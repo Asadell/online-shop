@@ -1,0 +1,82 @@
+products
+-
+id_product      int IDENTITY
+name            string
+desc            string
+price           int=0
+stock           int=0
+category_id     int FK >- categories.id_category
+shop_id         int FK >- shops.id_shop
+
+categories
+-
+id_category     int IDENTITY
+name            string
+
+orders
+-
+id_order        int IDENTITY
+no_resi         string
+status          enum
+order_date      dateTime default=GETUTCDATE()
+total_price     int=0
+user_id         int FK >- users.id_user
+payment_id      int FK >- payment_details.id_payment
+
+
+order_details
+-
+id_order_detail int IDENTITY
+qty             int=0
+price           int=0
+order_id        int FK >- orders.id_order
+product_id      int FK >- products.id_product
+
+users
+-
+id_user         int IDENTITY
+full_name       string
+email           string unique
+role            enum
+username        string unique
+password        string
+address         string
+phone_number    string unique
+created_at      dateTime default=GETUTCDATE()
+
+cart_items
+-
+id_cart_item    int IDENTITY
+qty             int=0
+user_id         int FK >- users.id_user
+product_id      int FK >- products.id_product
+
+payment_details
+-
+id_payment      int IDENTITY
+amount          int=0
+provider        string
+status          enum
+user_id         int FK >- users.id_user
+
+shops
+-
+id_shop         int IDENTITY
+name            string unique
+address_shop    string
+user_id         int FK >- users.id_user
+
+
+
+-
+# amount di table payment detail gatau buat apa
+# users
+# shops
+# categories
+# products
+# cart_items
+# orders
+# order_details
+# payment_details
+
+https://app.quickdatabasediagrams.com/#/d/169EOK
