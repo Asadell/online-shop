@@ -1,7 +1,10 @@
 <?php
 
-class DefaultApp{
+class DefaultApp extends BaseController{
   public function index(){
-    echo 'Hello world from default app';
+    $data = [
+      'title' => 'Dashboard Admin'
+    ];
+    $this->view('Admin/dashboard/index', $data);
   }
 }
