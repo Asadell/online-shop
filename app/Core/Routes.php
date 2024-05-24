@@ -1,49 +1,33 @@
 <?php
 
 class Routes{
-  private $controllerFolder = NULL;
-  private $controllerFile = 'DefaultApp';
-  private $controllerMethod = 'index';
-  private $parameter = [];
-
   public function run(){
-    $url = $this->getUrl();
-    if($url){                           // CEK file
-      if($url[0] == 'admin'){           // role admin
-        unset($url[0]);
-        if($url[1] == 'product'){       // productController
-          if(file_exists(__DIR__.'/../Controllers/Admin/ProductController.php')){
-            $this->controllerFolder = 'Admin/';
-            $this->controllerFile = 'ProductController';
-            unset($url[1]);
-          }
-        }
-      } 
-      // else if($url[0] == 'user'){
-  
-      // }
-    }
+    $router = new App();
+    $router->setDefaultController('DefaultApp');
+    $router->setDefaultMethod('index');
 
-    require_once __DIR__.'/../Controllers/'.$this->controllerFolder.$this->controllerFile.'.php';
-    $this->controllerFile = new $this->controllerFile();
+    // Auth
 
-    if(isset($url[2])){
-      if(method_exists($this->controllerFile, $url[2])){ // http://online-shop.test/admin/product/edit
-        $this->controllerMethod = $url[2];
-        unset($url[2]);
-      }
-    }
+    // Admin
+    // $router->get('/admin', ['Admin', 'Product', 'index']);
+    $router->get('/admin', ['Admin', 'DashboardController', 'index']);
+    $router->get('/admin/products', ['Admin', 'Product', 'index']); // apus
+    $router->get('/admin/products', ['Admin', 'ProductController', 'index']);
+    $router->get('/admin/products/create', ['Admin', 'ProductController', 'create']);
+    $router->post('/admin/products/create', ['Admin', 'ProductController', 'store']);
+    // $router->get('/admin/products/edit', ['Admin', 'ProductController', 'edit']);
+    $router->get('/admin/products/edit', ['Admin', 'ProductController', 'edit']);
+    $router->put('/admin/products/edit', ['Admin', 'ProductController', 'update']);
+    $router->delete('/admin/products/destroy', ['Admin', 'ProductController', 'destroy']);
+    
+    $router->get('/admin/products/{id}', ['Admin', 'Product', 'index']);
+    $router->post('/admin/products', ['Admin', 'Product', 'add']);
+    $router->put('/user/products', ['Admin', 'Product', 'edit']);
+    
+    // User
+    $router->get('/user', ['User', 'HomeController', 'index']);
 
-    if(!empty($url)){
-      $this->parameter=array_values($url);
-    }
-    call_user_func_array([$this->controllerFile, $this->controllerMethod], $this->parameter);
-  }
 
-  private function getUrl(){
-    $url = rtrim($_SERVER['QUERY_STRING'], '/');
-    $url = filter_var($url, FILTER_SANITIZE_URL);
-    $url = explode('/', $url);
-    return $url;
+    $router->run();
   }
 }
