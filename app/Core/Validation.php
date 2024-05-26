@@ -17,9 +17,6 @@ class Validation
 
   public function validate(array $data, array $fields, array $messages = []): array
   {
-    // echo "<pre>";
-    // print_r($data);
-    // echo "</pre>";
     $split = fn($str, $sparator) => array_map('trim', explode($sparator, $str));
     $rule_messages = array_filter($messages, fn($massage) => is_string($massage));
     $validation_errors = array_merge(self::DEFAULT_VALIDATION_ERRORS, $rule_messages);
@@ -42,14 +39,6 @@ class Validation
           } else {
             $field_value = $data[$field] ?? null;
           }
-          // if ($field === 'fileImg' && isset($data[$field]['name'])) {
-          //   $data[$field] = $data[$field]['name'];
-          //   echo "<br>uhuy<br>";
-          //   echo print_r($data[$field]['name'], true);
-          //   echo "<br>uhuy<br>";
-          // }
-          // echo "Validating text: {$data[$field]} for field: $field with rule: $rule_name using function: $fn<br>";
-          // echo print_r($data, true);
           $pass = $this->$fn($data, $field, ...$params);
           if (!$pass) {
             array_push(

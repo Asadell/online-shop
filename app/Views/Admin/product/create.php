@@ -1,12 +1,12 @@
 <?php
 $data = Message::getData();
 $name = "";
-$desc = "";
+$description = "";
 $price = "";
 $stock = "";
 if($data) {
   $name = $data['name'];
-  $desc = $data['desc'];
+  $description = $data['description'];
   $price = $data['price'];
   $stock = $data['stock'];
 }
@@ -28,14 +28,14 @@ Message::flash();
                 class="form-control"
                 name="name"
                 id="name"
-                placeholder="Product Name.." value="<?= $name ?>"/>
+                placeholder="Product Name.." value="<?= $name ?>" required/>
             </div>
           </div>
           <!-- form-group // -->
           <div class="form-group">
-            <label for="desc" class="col-sm-3 control-label mb-2">Description</label>
+            <label for="description" class="col-sm-3 control-label mb-2">Description</label>
             <div class="col-sm-9">
-              <textarea class="form-control" name="desc" id="desc"><?= $desc ?></textarea>
+              <textarea class="form-control" name="description" id="description" required><?= $description ?></textarea>
             </div>
           </div>
           <!-- form-group // -->
@@ -48,7 +48,7 @@ Message::flash();
                   class="form-control w-auto"
                   name="price"
                   id="price"
-                  placeholder="0" value="<?= $price ?>"/>
+                  placeholder="0" value="<?= $price ?>" required/>
               </div>
             </div>
             <div class="form-group">
@@ -59,7 +59,7 @@ Message::flash();
                   class="form-control w-auto"
                   name="stock"
                   id="stock"
-                  placeholder="0" value="<?= $stock ?>"/>
+                  placeholder="0" value="<?= $stock ?>" required/>
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@ Message::flash();
           </div>
         </div>
         <!-- form-group // -->
-        <div class="d-flex flex-column gap-2"><img src="<?= BASEURL . '/img/admin/no-img.jpg'?>" alt=""><input type="file" class="form-control form-control-sm" id="fileImg" name="fileImg" /></div>
+        <div class="d-flex flex-column gap-2"><img src="<?= BASEURL . '/img/admin/no-img.jpg'?>" alt=""><input type="file" class="form-control form-control-sm" id="file" name="file"  required/></div>
       </form>
     </div>
     <!-- panel-body // -->

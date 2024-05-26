@@ -49,10 +49,8 @@ Message::flash();
         <span class=""><?= $row['category']?></span>
       </td>
       <td>
-        <button type="button" class="btn btn-primary">
-          Edit
-        </button>
-        <button type="button" class="btn btn-danger">
+        <a href="<?= BASEURL . '/admin/products/edit/'.$row['id_product']?>" class="btn btn-primary" type="button">Edit</a>
+        <button onclick="deleteProduct('<?= $row['id_product']?>')" type="button" class="btn btn-danger" id="btn-delete">
           Delete
         </button>
       </td>

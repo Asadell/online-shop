@@ -14,8 +14,8 @@ class Routes{
     $router->get('/admin/products/add', ['Admin', 'ProductController', 'create']);
     $router->post('/admin/products/add', ['Admin', 'ProductController', 'store']);
     $router->get('/admin/products/edit', ['Admin', 'ProductController', 'edit']);
-    $router->put('/admin/products/edit', ['Admin', 'ProductController', 'update']);
-    $router->delete('/admin/products/delete', ['Admin', 'ProductController', 'destroy']);
+    $router->post('/admin/products/edit', ['Admin', 'ProductController', 'update']);
+    $router->get('/admin/products/delete/{id}', ['Admin', 'ProductController', 'destroy']);
     $router->get('/admin/categories', ['Admin', 'CategoryController', 'index']);
     $router->get('/admin/categories/add', ['Admin', 'CategoryController', 'create']);
     $router->post('/admin/categories/add', ['Admin', 'CategoryController', 'store']);

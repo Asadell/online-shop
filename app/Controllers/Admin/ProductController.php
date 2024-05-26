@@ -15,15 +15,7 @@ class ProductController extends BaseController{
     $this->view('Admin/product/index', $data);
     $this->view('Admin/template/footer');
   }
-  public function edit(){
-    $data = [
-      'title' => 'Product', 
-      'nav' => 'products',
-    ];
-    $this->view('Admin/template/header', $data);
-    $this->view('Admin/product/edit', $data);
-    $this->view('Admin/template/footer');
-  }
+
   public function create(){
     $data = [
       'title' => 'Product', 
@@ -33,21 +25,22 @@ class ProductController extends BaseController{
     $this->view('Admin/product/create', $data);
     $this->view('Admin/template/footer');
   }
+
   public function store(){
     $fields = [
       'name' => 'string | required | between: 3, 30',
-      'desc' => 'string | required',
+      'description' => 'string | required',
       'price' => 'int | required',
       'stock' => 'int | required',
-      'fileImg' => 'string | required | fileimage'
-      // 'fileImg' => 'string | required | fileimage'
+      'category' => 'int | required',
+      'file' => 'string | required | fileimage'
     ];
     $message = [
       'name' => [
         'required' => 'Nama barang harus diisi',
         'between' => 'Nama barang harus diantara 3 dan 30 karakter'
       ],
-      'desc' =>  [
+      'description' =>  [
         'required' => 'Deskripsi harus diisi'
       ],
       'price' => [
@@ -56,48 +49,173 @@ class ProductController extends BaseController{
       'stock' => [
         'required' => 'Stok harus diisi'
       ],
-      'fileImg' => [
+      'category' => [
+        'required' => 'Category harus diisi'
+      ],
+      'file' => [
         'required' => 'File image harus diisi',
-        'fileimage' => 'file harus berekstensi png/jpg/jpeg'
+        'fileimage' => 'File harus berekstensi png/jpg/jpeg'
       ]
     ];
-    // echo "<pre>";
-    // print_r($_POST);
-    // print_r($_FILES['fileImg']['name']);
-    // print_r($_FILES['fileImg']['tmp_name']);
-    // print_r(array_merge($_POST, $_FILES));
-    // print_r($fields);
-    // echo "</pre>";
     [$inputs, $errors] = $this->filter(array_merge($_POST, $_FILES), $fields, $message);
-    // echo "<pre>";
-    // print_r($inputs);
-    // print_r($errors);
-    // echo "</pre>";
-    // die();
     if($errors) {
       Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
       $this->redirect('admin/products/add');
     }
-    // $file_tmp = $inputs['fileImg']['tmp_name'];
-    // var_dump($file_tmp);
-    // $fileName = $inputs['fileImg']['name'];
-    // var_dump(__DIR__.'/../../../public/img/admin/products/'.$fileName);
-    // die();
     
     $proc = $this->productModel->insert($inputs);
     
     if($proc) {
-      $fileName = $inputs['fileImg']['name'];
-      $file_tmp = $inputs['fileImg']['tmp_name'];
+      $fileName = $inputs['file']['name'];
+      $file_tmp = $inputs['file']['tmp_name'];
       move_uploaded_file($file_tmp, __DIR__.'/../../../public/img/admin/products/'.$fileName);
       Message::setFlash('success', 'Berhasil !', 'Barang berhasil ditambahkan');
       $this->redirect('admin/products');
     }
-    
-    
-    // $proc = $this->barangModel->insertt
   }
-  // public function update(){
+  
+  public function edit($id){
+    $data = [
+      'title' => 'Product', 
+      'nav' => 'products',
+      'product' => $this->productModel->getById($id)
+    ];
+    $this->view('Admin/template/header', $data);
+    $this->view('Admin/product/edit', $data);
+    $this->view('Admin/template/footer');
+  }
+  
+  public function update(){
+    if($_FILES['file']['name'] == "") {
+      $fields = [
+        'name' => 'string | required | between: 3, 30',
+        'description' => 'string | required',
+        'price' => 'int | required',
+        'stock' => 'int | required',
+        'category' => 'int | required',
+        'id_product' => 'int | required',
+        'mode' => 'string | required'
+      ];
+      $message = [
+        'name' => [
+          'required' => 'Nama barang harus diisi',
+          'between' => 'Nama barang harus diantara 3 dan 30 karakter'
+        ],
+        'description' =>  [
+          'required' => 'Deskripsi harus diisi'
+        ],
+        'price' => [
+          'required' => 'Harga harus diisi'
+        ],
+        'stock' => [
+          'required' => 'Stok harus diisi'
+        ],
+        'category' => [
+          'required' => 'Category harus diisi'
+        ],
+        'id_product' => [
+          'required' => 'ID Product harus ada'
+        ],
+        'mode' => [
+          'required' => 'mode harus ada'
+          ]
+        ];
+    } else {
+      $fields = [
+        'name' => 'string | required | between: 3, 30',
+        'description' => 'string | required',
+        'price' => 'int | required',
+        'stock' => 'int | required',
+        'category' => 'int | required',
+        'id_product' => 'int | required',
+        'mode' => 'string | required',
+        'file' => 'string | required | fileimage'
+      ];
+      $message = [
+        'name' => [
+          'required' => 'Nama barang harus diisi',
+          'between' => 'Nama barang harus diantara 3 dan 30 karakter'
+        ],
+        'description' =>  [
+          'required' => 'Deskripsi harus diisi'
+        ],
+        'price' => [
+          'required' => 'Harga harus diisi'
+        ],
+        'stock' => [
+          'required' => 'Stok harus diisi'
+        ],
+        'category' => [
+          'required' => 'Category harus diisi'
+        ],
+        'id_product' => [
+          'required' => 'ID Product harus ada'
+        ],
+        'mode' => [
+          'required' => 'mode harus ada'
+        ],
+        'file' => [
+          'required' => 'File image harus diisi',
+          'fileimage' => 'File harus berekstensi png/jpg/jpeg'
+        ]
+      ];
+    }
     
-  // }
+    [$inputs, $errors] = $this->filter(array_merge($_POST, $_FILES), $fields, $message);
+    if($errors) {
+      Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
+      $this->redirect('admin/products/edit/'.$inputs['id_product']);
+    } 
+    
+    if($inputs['mode'] == 'update'){
+      $proc = null;
+      $oldFileName = null;
+      if($_FILES['file']['name'] == ""){
+        $proc = $this->productModel->updateWithoutFile($inputs);
+      } else {
+        $oldFileData = $this->productModel->productFileName($inputs['id_product']);
+        $oldFileName = $oldFileData['file'];
+        $proc = $this->productModel->update($inputs);
+      }
+      if($proc){
+        Message::setFlash('success', 'Berhasil !', 'Product berhasil diubah');
+        if(!($_FILES['file']['name'] == "")){
+          unlink(__DIR__.'/../../../public/img/admin/products/'.$oldFileName);
+          $fileName = $inputs['file']['name'];
+          $file_tmp = $inputs['file']['tmp_name'];
+          move_uploaded_file($file_tmp, __DIR__.'/../../../public/img/admin/products/'.$fileName);
+        }
+        $this->redirect('admin/products');
+      } else {
+        Message::setFlash('error', 'Gagal !', 'Terjadi kesalahan saat mengupdate barang');
+        $this->redirect('admin/products/edit/'.$inputs['id_product']);
+      }
+    } else {
+      $oldFileData = $this->productModel->productFileName($inputs['id_product']);
+      $oldFileName = $oldFileData['file'];
+      $proc = $this->productModel->delete($inputs['id_product']);
+      if($proc){
+        Message::setFlash('success', 'Berhasil !', 'Product berhasil dihapus');
+        unlink(__DIR__.'/../../../public/img/admin/products/'.$oldFileName);
+        $this->redirect('admin/products');
+      } else {
+        Message::setFlash('error', 'Gagal !', 'Terjadi kesalahan saat menghapus barang');
+        $this->redirect('admin/products/edit/'.$inputs['id_product']);
+      }
+    }
+  }
+
+  public function destroy($id){
+    $oldFileData = $this->productModel->productFileName($id);
+    $oldFileName = $oldFileData['file'];
+    $proc = $this->productModel->delete($id);
+    if($proc){
+      Message::setFlash('success', 'Berhasil !', 'Product berhasil dihapus');
+      unlink(__DIR__.'/../../../public/img/admin/products/'.$oldFileName);
+      $this->redirect('admin/products');
+    } else {
+      Message::setFlash('error', 'Gagal !', 'Terjadi kesalahan saat menghapus barang');
+      $this->redirect('admin/products');
+    }
+  }
 } 

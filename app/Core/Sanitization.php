@@ -56,8 +56,8 @@ class Sanitization{
       }
       $data = [];
         foreach ($inputs as $key => $value) {
-        if ($key === 'fileImg') {
-          // If the field is fileImg, keep it intact
+        if ($key === 'file') {
+          // If the field is file, keep it intact
           $data[$key] = $value;
         } else {
           $options = $filters[trim($field)] ?? $default_filter;
