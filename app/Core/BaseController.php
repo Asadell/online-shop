@@ -1,6 +1,7 @@
 <?php
 
-class BaseController{
+
+class BaseController extends Filter{
   public function view($view, $data = []){
     if(count($data)){
       extract($data);
@@ -9,12 +10,12 @@ class BaseController{
   }
 
   public function redirect($url){
-    header('Location: '.$url);
+    header('Location: '.BASEURL.'/'.$url);
     exit;
   }
 
-  public function model($model){
-    require_once '../app/Models/'.$model.'.php';
+  public function model($folder, $model){
+    require_once '../app/Models/'.$folder.$model.'.php';
     return new $model;
   }
 }
