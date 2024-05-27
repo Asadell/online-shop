@@ -17,11 +17,11 @@ class Routes{
     $router->post('/admin/products/edit', ['Admin', 'ProductController', 'update']);
     $router->get('/admin/products/delete/{id}', ['Admin', 'ProductController', 'destroy']);
     $router->get('/admin/categories', ['Admin', 'CategoryController', 'index']);
-    $router->get('/admin/categories/add', ['Admin', 'CategoryController', 'create']);
+    // $router->get('/admin/categories/add', ['Admin', 'CategoryController', 'create']);
     $router->post('/admin/categories/add', ['Admin', 'CategoryController', 'store']);
     $router->get('/admin/categories/edit', ['Admin', 'CategoryController', 'edit']);
-    $router->put('/admin/categories/edit', ['Admin', 'CategoryController', 'update']);
-    $router->delete('/admin/categories/delete', ['Admin', 'CategoryController', 'destroy']);
+    $router->post('/admin/categories/edit', ['Admin', 'CategoryController', 'update']);
+    $router->get('/admin/categories/delete/{id}', ['Admin', 'CategoryController', 'destroy']);
     $router->get('/admin/orders', ['Admin', 'OrderController', 'index']);
     $router->get('/admin/orders/download', ['Admin', 'OrderController', 'download']);
     $router->get('/admin/admins', ['Admin', 'AdminController', 'index']);

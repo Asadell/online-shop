@@ -35,17 +35,14 @@ function deleteProduct(id) {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        type: 'DELETE', // Menggunakan metode DELETE
+        type: 'DELETE',
         // data: { id: id },
-        url: '/admin/products/delete/' + id, // URL untuk menangani penghapusan produk
+        url: '/admin/products/delete/' + id,
         success: function (data) {
-          // Tangani respon jika penghapusan berhasil
           console.log('Produk berhasil dihapus');
-          // Lakukan tindakan setelah penghapusan berhasil, misalnya:
           // window.location.href = '/desired-route';
         },
         error: function (xhr, status, error) {
-          // Tangani kesalahan jika penghapusan gagal
           console.error('Gagal menghapus produk');
         },
       });
@@ -54,15 +51,13 @@ function deleteProduct(id) {
       //     data: {'id' : this.id },
       //     url: 'delete.php',
       //     success: function(data) {
-      //         // Request is successful you have the response in data
       //     }
       // })
       // $.ajax({
-      //   method: 'DELETE', // Menggunakan metode DELETE
-      //   url: '/admin/products/delete/' + id, // URL yang sesuai dengan rute penghapusan
+      //   method: 'DELETE',
+      //   url: '/admin/products/delete/' + id,
       //   // success: function(data) {
       //   //     console.log('Produk berhasil dihapus');
-      //   //     // Lakukan tindakan setelah penghapusan berhasil, misalnya:
       //   //     // window.location.href = '/desired-route';
       //   // },
       //   // error: function(xhr, status, error) {
@@ -77,7 +72,7 @@ function deleteProduct(id) {
       // fetch('/admin/products/delete/' + id, {
       //   method: 'DELETE',
       //   headers: {
-      //     'Content-Type': 'application/json', // Set header content type ke application/json
+      //     'Content-Type': 'application/json',
       //   },
       //   body: JSON.stringify({ id: id }),
       // });
@@ -86,4 +81,34 @@ function deleteProduct(id) {
       return false;
     }
   });
+}
+function deleteById(path, id) {
+  Swal.fire({
+    icon: 'warning',
+    title: 'Konfirmasi',
+    text: 'Yakin akan dihapus?',
+    showCancelButton: true,
+    confirmButtonText: 'Ya',
+    cancelButtonText: 'Tidak',
+    reverseButtons: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = path + id;
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      return false;
+    }
+  });
+}
+
+$(document).ready(function () {
+  $(document).on('click', '#editCategoryBtn', OpenModalPopUpEditCategory);
+});
+
+function OpenModalPopUpEditCategory() {
+  let id = $(this).closest('tr').find('.categoryId').val();
+  let category = $(this).closest('tr').find('.categoryName').val();
+  console.log(id);
+  console.log(category);
+  $('#category_Id').val(id);
+  $('#category_Name').val(category);
 }

@@ -15,6 +15,53 @@
   </head>
 
   <body>
+    <!-- Modal Add Category -->
+    <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered z-3">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addCategoryLabel">Add Category</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form  action="<?= BASEURL . '/admin/categories/add' ?>" method="post">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="category" class="form-label">Category Name</label>
+                <input type="text" class="form-control" id="category" name="category" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Edit Category -->
+    <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="editCategoryLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered z-3">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="editCategoryLabel">Edit Category</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form  action="<?= BASEURL . '/admin/categories/edit' ?>" method="post">
+            <input type="hidden" id="category_Id" name="id_category">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="category" class="form-label">Category Name</label>
+                <input type="text" class="form-control" id="category_Name" name="category" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Edit changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <header>
       <div class="logosec">
 				<img src="<?= BASEURL . '/img/admin/logo.png'?>" alt="Logo" class="dpicn">

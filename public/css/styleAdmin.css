@@ -335,3 +335,8 @@ header {
   color: white;
   border-radius: 4px;
 }
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5); /* Ubah sesuai kebutuhan Anda */
+  backdrop-filter: none; /* Pastikan efek blur tidak diterapkan */
+}
