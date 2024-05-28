@@ -3,7 +3,7 @@ Message::flash();
 ?>
 <h2>Order admin</h2>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reprehenderit provident est cumque veniam voluptas?</p>
-<button onclick="location.href='<?= BASEURL . '/admin/products/add' ?>'" type="button" class="btn btn-success">Add Admin</button>
+<button  type="button" class="btn btn-success mb-4" data-bs-toggle="modal" data-bs-target="#addAdmin">Add Admin</button>
 <table class="table align-middle mb-0 bg-white table-striped">
   <thead class="bg-light">
     <tr>
@@ -27,7 +27,13 @@ Message::flash();
       <td class=""><?= $row['phone_number']?></td>
       <td class=""><?= $row['address']?></td>
       <td>
-        <a href="3" class="btn btn-primary" type="button">Edit</a>
+        <input type="hidden" class="idAdmin" value="<?= $row['id_user']?>">
+        <input type="hidden" class="nameAdmin" value="<?= $row['full_name']?>">
+        <input type="hidden" class="emailAdmin" value="<?= $row['email']?>">
+        <input type="hidden" class="phoneAdmin" value="<?= $row['phone_number']?>">
+        <input type="hidden" class="addressAdmin" value="<?= $row['address']?>">
+        <button href="3" class="btn btn-primary" type="button" data-bs-toggle="modal" id="editAdminBtn" data-bs-target="#editAdmin">Edit</button>
+        <!-- <button  href="3" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editAdmin" id="editAdminBtn">Edit</button> -->
       </td>
     </tr>
     <?php endforeach;?>

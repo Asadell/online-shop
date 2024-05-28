@@ -15,6 +15,87 @@
   </head>
 
   <body>
+    <!-- Modal Add admin -->
+    <div class="modal fade" id="addAdmin" tabindex="-1" aria-labelledby="addAdminLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered z-3">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addAdminLabel">Add admin</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form  action="<?= BASEURL . '/admin/admins' ?>" method="post">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="nameAdmin" class="form-label">Full name</label>
+                <input type="text" class="form-control" id="nameAdmin" name="nameAdmin" required>
+              </div>
+              <div class="mb-3">
+                <label for="emailAdmin" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailAdmin" name="emailAdmin" required>
+              </div>
+              <div class="mb-3">
+                <label for="usernameAdmin" class="form-label">username</label>
+                <input type="text" class="form-control" id="usernameAdmin" name="usernameAdmin">
+              </div>
+              <div class="mb-3">
+                <label for="passwordAdmin" class="form-label">Password</label>
+                <input type="password" class="form-control" id="passwordAdmin" name="passwordAdmin" required>
+              </div>
+              <div class="mb-3">
+                <label for="phoneAdmin" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phoneAdmin" name="phoneAdmin" required>
+              </div>
+              <div class="mb-3">
+                <label for="addressAdmin" class="form-label">Address</label>
+                <input type="text" class="form-control" id="addressAdmin" name="addressAdmin" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal Edit admin -->
+    <div class="modal fade" id="editAdmin" tabindex="-1" aria-labelledby="editAdminLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered z-3">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="editAdminLabel">Edit admin</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form  action="<?= BASEURL . '/admin/admins/edit' ?>" method="post">
+          <input type="hidden" id="id_Admin" name="id_Admin">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name_Admin" class="form-label">Full name</label>
+                <input type="text" class="form-control" id="name_Admin" name="name_Admin" required>
+              </div>
+              <div class="mb-3">
+                <label for="email_Admin" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email_Admin" name="email_Admin" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone_Admin" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone_Admin" name="phone_Admin" required>
+              </div>
+              <div class="mb-3">
+                <label for="address_Admin" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address_Admin" name="address_Admin" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
     <!-- Modal Add Category -->
     <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered z-3">
@@ -56,7 +137,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Edit changes</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
           </form>
         </div>

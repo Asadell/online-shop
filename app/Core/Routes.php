@@ -23,9 +23,11 @@ class Routes{
     $router->post('/admin/categories/edit', ['Admin', 'CategoryController', 'update']);
     $router->get('/admin/categories/delete/{id}', ['Admin', 'CategoryController', 'destroy']);
     $router->get('/admin/orders', ['Admin', 'OrderController', 'index']);
+    $router->get('/admin/orders/detail/{id}', ['Admin', 'OrderController', 'detail']);
     $router->get('/admin/orders/download', ['Admin', 'OrderController', 'download']);
     $router->get('/admin/admins', ['Admin', 'AdminController', 'index']);
     $router->post('/admin/admins', ['Admin', 'AdminController', 'store']);
+    $router->post('/admin/admins/edit', ['Admin', 'AdminController', 'update']);
     $router->delete('/admin/admins', ['Admin', 'AdminController', 'delete']);
     
     // User

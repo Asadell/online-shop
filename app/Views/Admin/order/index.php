@@ -27,7 +27,7 @@ Message::flash();
       <td class=""><?= $row['total_price']?></td>
       <td class=""><?= $row['order_date']?></td>
       <td>
-        <a href="#" class="btn btn-primary" type="button">Detail</a>
+        <a href="<?= BASEURL . '/admin/orders/detail/'.$row['id_order']?>" class="btn btn-primary" type="button">Detail</a>
       </td>
     </tr>
     <?php endforeach;?>

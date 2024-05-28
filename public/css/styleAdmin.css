@@ -340,3 +340,7 @@ header {
   background-color: rgba(0, 0, 0, 0.5); /* Ubah sesuai kebutuhan Anda */
   backdrop-filter: none; /* Pastikan efek blur tidak diterapkan */
 }
+
+.flex-filll {
+  flex: 0 1 auto;
+}

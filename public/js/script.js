@@ -101,6 +101,7 @@ function deleteById(path, id) {
 }
 
 $(document).ready(function () {
+  $(document).on('click', '#editAdminBtn', OpenModalPopUpEditAdminn);
   $(document).on('click', '#editCategoryBtn', OpenModalPopUpEditCategory);
 });
 
@@ -111,4 +112,23 @@ function OpenModalPopUpEditCategory() {
   console.log(category);
   $('#category_Id').val(id);
   $('#category_Name').val(category);
+}
+
+function OpenModalPopUpEditAdminn() {
+  console.log('yo');
+  let idAdmin = $(this).closest('tr').find('.idAdmin').val();
+  let nameAdmin = $(this).closest('tr').find('.nameAdmin').val();
+  let emailAdmin = $(this).closest('tr').find('.emailAdmin').val();
+  let phoneAdmin = $(this).closest('tr').find('.phoneAdmin').val();
+  let addressAdmin = $(this).closest('tr').find('.addressAdmin').val();
+  console.log(idAdmin);
+  console.log(nameAdmin);
+  console.log(emailAdmin);
+  console.log(phoneAdmin);
+  console.log(addressAdmin);
+  $('#id_Admin').val(idAdmin);
+  $('#name_Admin').val(nameAdmin);
+  $('#email_Admin').val(emailAdmin);
+  $('#phone_Admin').val(phoneAdmin);
+  $('#address_Admin').val(addressAdmin);
 }
