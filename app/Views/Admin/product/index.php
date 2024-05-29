@@ -3,7 +3,10 @@ Message::flash();
 ?>
 <h2>Product admin</h2>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reprehenderit provident est cumque veniam voluptas?</p>
-<button onclick="location.href='<?= BASEURL . '/admin/products/add' ?>'" type="button" class="btn btn-success mb-4">Add Product</button>
+<div class="d-flex justify-content-between">
+  <button onclick="location.href='<?= BASEURL . '/admin/products/add' ?>'" type="button" class="btn btn-success mb-4">Add Product</button>
+  <button onclick="location.href='<?= BASEURL . '/admin/products/report' ?>'" type="button" class="btn btn-secondary mb-4"><i class="fa-solid fa-download"></i> Product Report</button>
+</div>
 <table class="table align-middle mb-0 bg-white table-striped">
   <thead class="bg-light">
     <tr>

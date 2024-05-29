@@ -1,5 +1,5 @@
 <?php
-
+require_once('PhpXlsxGenerator.php');
 class ProductController extends BaseController{
   private $productModel;
   public function __construct() {
@@ -217,5 +217,41 @@ class ProductController extends BaseController{
       Message::setFlash('error', 'Gagal !', 'Terjadi kesalahan saat menghapus barang');
       $this->redirect('admin/products');
     }
+  }
+
+  public function report(){
+    $data = $this->productModel->productReport();
+    // ======================================================
+
+    // Excel file name for download 
+    $fileName = "Product_Report_" . date('Y-m-d') . ".xlsx"; 
+    $excelData[] = array('NO', 'ID', 'PRODUCT', 'CATEGORY', 'PRICE', 'STOCK', 'VIEWS COUNT', 'CART COUNT', 'SALES COUNT', 'CREATED AT', 'ADMIN', 'ORDER QUANTITY', 'TOTAL ORDERS');
+    
+    $no = 1;
+    foreach ($data as $row){
+      $lineData = array($no++, $row['id_product'], $row['product'], $row['category'], $row['price'], $row['stock'], $row['views_count'], $row['cart_count'], $row['sales_count'], $row['created_at'], $row['admin'], $row['qty'], $row['total_orders']);
+      $excelData[] = $lineData;
+      echo "<pre>";
+      print_r($row);
+      echo "</pre>";
+    }
+    
+    // $phpXlsxGenerator = new PhpXlsxGenerator();
+    $xlsx = PhpXlsxGenerator::fromArray( $excelData ); 
+    $xlsx->downloadAs($fileName); 
+    exit; 
+
+
+    // ======================================================
+    // echo "<pre>";
+    // print_r($data);
+    // echo "</pre>";
+    // die();
+  }
+
+  private function filterData(&$str){ 
+    $str = preg_replace("/\t/", "\\t", $str); 
+    $str = preg_replace("/\r?\n/", "\\n", $str); 
+    if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"'; 
   }
 } 

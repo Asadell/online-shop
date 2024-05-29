@@ -16,6 +16,7 @@ class Routes{
     $router->get('/admin/products/edit', ['Admin', 'ProductController', 'edit']);
     $router->post('/admin/products/edit', ['Admin', 'ProductController', 'update']);
     $router->get('/admin/products/delete/{id}', ['Admin', 'ProductController', 'destroy']);
+    $router->get('/admin/products/report', ['Admin', 'ProductController', 'report']);
     $router->get('/admin/categories', ['Admin', 'CategoryController', 'index']);
     // $router->get('/admin/categories/add', ['Admin', 'CategoryController', 'create']);
     $router->post('/admin/categories/add', ['Admin', 'CategoryController', 'store']);

@@ -72,4 +72,16 @@ class ProductModel extends Database {
     $query = "DELETE FROM products WHERE id_product = ?";
     return $this->qry($query, [$id]);
   }
+
+  public function productReport(){
+    $query = "SELECT p.id_product, p.name AS product, c.name AS category, p.price,
+                  p.stock, p.views_count, p.cart_count, p.sales_count, p.created_at,
+                  u.full_name AS admin , sum(od.qty) as qty, sum(od.qty * od.price) as total_orders
+              FROM products p
+              JOIN categories c ON c.id_category = p.category_id
+              JOIN order_details od ON od.product_id = p.id_product
+              JOIN users u ON u.id_user = p.user_id
+              GROUP BY p.id_product, c.id_category, u.id_user";
+    return $this->qry($query)->fetchAll();
+  }
 }
