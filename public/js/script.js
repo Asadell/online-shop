@@ -101,6 +101,7 @@ function deleteById(path, id) {
 }
 
 $(document).ready(function () {
+  // console.log('yo');
   $(document).on('click', '#editAdminBtn', OpenModalPopUpEditAdminn);
   $(document).on('click', '#editCategoryBtn', OpenModalPopUpEditCategory);
 });
