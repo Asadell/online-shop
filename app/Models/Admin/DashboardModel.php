@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\Database;
+
 class DashboardModel extends Database {
   public function __construct()
   {

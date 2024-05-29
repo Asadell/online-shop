@@ -1,4 +1,8 @@
 <?php
+namespace App\Core;
+
+use App\Core\Sanitization;
+use App\Core\Validation;
 
 class Filter
 {

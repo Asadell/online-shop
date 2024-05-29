@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Core;
 class Message
 {
   public static function setFlash($icon, $title, $text, $data = [])

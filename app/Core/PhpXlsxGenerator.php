@@ -1,6 +1,6 @@
 <?php
 // namespace CodexWorld;
-
+namespace App\Core;
 /**
  * Class PhpXlsxGenerator
  * Export data to MS Excel. PHP XLSX generator

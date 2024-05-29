@@ -1,4 +1,7 @@
 <?php
+
+use App\Core\Message;
+
 $data = Message::getData();
 $fileimage = $product['file'];
 if($data) {

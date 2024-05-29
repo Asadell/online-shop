@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Core;
 class Routes{
   public function run(){
     $router = new App();

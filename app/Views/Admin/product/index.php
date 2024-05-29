@@ -1,4 +1,7 @@
 <?php
+
+use App\Core\Message;
+
 Message::flash();
 ?>
 <h2>Product admin</h2>

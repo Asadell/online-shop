@@ -1,4 +1,8 @@
 <?php
+namespace App\Core;
+
+use PDO;
+use PDOException;
 
 class Database {
   private $conn;
@@ -10,11 +14,11 @@ class Database {
 
   protected function setConnection(){
     try {
-      $host=DB_HOST;
-      $user=DB_USER;
-      $pass=DB_PASS;
-      $db=DB_NAME;
-      $port=DB_PORT;
+      $host=getenv('DB_HOST');
+      $user=getenv('DB_USER');
+      $pass=getenv('DB_PASS');
+      $db=getenv('DB_NAME');
+      $port=getenv('DB_PORT');
       $dsn = "pgsql:host=$host;port=$port;dbname=$db;";
       $conn = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
       return $conn;

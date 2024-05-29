@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\BaseController;
+
 class OrderController extends BaseController{
   private $orderModel;
   public function __construct() {

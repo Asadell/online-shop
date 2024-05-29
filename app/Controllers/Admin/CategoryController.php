@@ -1,5 +1,8 @@
 <?php
 
+use App\Core\BaseController;
+use App\Core\Message;
+
 class CategoryController extends BaseController{
   private $categoryModel;
   public function __construct() {

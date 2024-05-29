@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\Database;
+
 class CategoryModel extends Database {
   public function __construct()
   {

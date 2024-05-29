@@ -1,5 +1,9 @@
 <?php
-require_once('PhpXlsxGenerator.php');
+
+use App\Core\BaseController;
+use App\Core\Message;
+use App\Core\PhpXlsxGenerator;
+
 class ProductController extends BaseController{
   private $productModel;
   public function __construct() {

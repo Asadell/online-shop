@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Core;
 class Sanitization{
   const FILTERS = [
     'string' => FILTER_SANITIZE_SPECIAL_CHARS,

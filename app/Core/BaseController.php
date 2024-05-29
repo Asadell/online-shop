@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Core;
+
+use App\Core\Filter;
 
 class BaseController extends Filter{
   public function view($view, $data = []){

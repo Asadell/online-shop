@@ -1,5 +1,8 @@
 <?php
 
+use App\Core\BaseController;
+use App\Core\Message;
+
 class AdminController extends BaseController{
   private $adminModel;
   public function __construct() {

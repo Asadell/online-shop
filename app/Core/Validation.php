@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Core;
 class Validation
 {
   const DEFAULT_VALIDATION_ERRORS = [

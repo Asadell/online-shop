@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\BaseController;
+
 class DashboardController extends BaseController{
   private $dashboardModel;
   public function __construct() {
