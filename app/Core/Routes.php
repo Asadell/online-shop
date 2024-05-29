@@ -7,6 +7,10 @@ class Routes{
     $router->setDefaultMethod('index');
 
     // Auth
+    $router->get('/login', ['Auth', 'AuthController', 'index']);
+    $router->post('/login', ['Auth', 'AuthController', 'login']);
+    $router->get('/register', ['Auth', 'AuthController', 'register']);
+    $router->post('/register', ['Auth', 'AuthController', 'registration']);
 
     // Admin
     $router->get('/admin', ['Admin', 'DashboardController', 'index']);
