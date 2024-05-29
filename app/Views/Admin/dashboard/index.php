@@ -53,7 +53,6 @@
     const salesData = <?= $data['salesData']; ?>;
     const totalQty = <?= $data['totalQuantity']['sum']; ?>;
     const dataPoints = salesData.map(item => {
-      console.log(item);
       return { y: (item.sum/totalQty)*100, label: item.name };
     });
 
@@ -103,14 +102,19 @@
     const totalSalesHanphone = <?= $data['totalSalesHanphone']; ?>;
     const totalSalesAccessories = <?= $data['totalSalesAccessories']; ?>;
     const dataPointTotalSalesLaptop = totalSalesLaptop.map(item => {
-      return { x: (item.extract)*1000, y: item.sum };
+      return { x: ((item.extract)*1000)-25200000, y: item.sum };
     });
     const dataPointTotalSalesHanphone = totalSalesHanphone.map(item => {
-      return { x: (item.extract)*1000, y: item.sum };
+      return { x: ((item.extract)*1000)-25200000, y: item.sum };
     });
     const dataPointTotalSalesAccessories = totalSalesAccessories.map(item => {
-      return { x: (item.extract)*1000, y: item.sum };
+      return { x: ((item.extract)*1000)-25200000, y: item.sum };
     });
+    function formatTooltipDate(timestamp) {
+      let date = new Date(timestamp);
+      let options = { weekday: 'long', day: 'numeric', month: 'long' };
+      return date.toLocaleDateString('en-US', options);
+    }
     const chartSalesByCategory = new CanvasJS.Chart("chartContainerSalesByCategory", {
       animationEnabled: true,
       title:{
@@ -128,12 +132,12 @@
         itemclick: toggleDataSeriesSalesByCategory
       },
       toolTip: {
-        shared: true
+        shared: true,
       },
       data: [
       {
-        type: "area",
-        name: "Laptop Sales",
+        type: "line",
+        name: "Laptop",
         showInLegend: "true",
         xValueType: "dateTime",
         xValueFormatString: "MMM YYYY",
@@ -141,8 +145,8 @@
         dataPoints: dataPointTotalSalesLaptop
       },
       {
-        type: "area",
-        name: "Handphone Sales",
+        type: "line",
+        name: "Handphone",
         showInLegend: "true",
         xValueType: "dateTime",
         xValueFormatString: "MMM YYYY",
@@ -150,8 +154,8 @@
         dataPoints: dataPointTotalSalesHanphone
       },
       {
-        type: "area",
-        name: "Accessories Sales",
+        type: "line",
+        name: "Accessories",
         showInLegend: "true",
         xValueType: "dateTime",
         xValueFormatString: "MMM YYYY",
