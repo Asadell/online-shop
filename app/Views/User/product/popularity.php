@@ -6,6 +6,6 @@
   <title><?= $title ?></title>
 </head>
 <body>
-  Home Customer
+  Popularity
 </body>
 </html>

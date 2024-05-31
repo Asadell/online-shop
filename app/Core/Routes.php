@@ -37,6 +37,32 @@ class Routes{
     
     // User
     $router->get('/user', ['User', 'HomeController', 'index']);
+    $router->get('/user/about', ['User', 'HomeController', 'about']); 
+    $router->get('/user/shop', ['User', 'ProductController', 'index']); 
+    $router->get('/user/shop/popularity', ['User', 'ProductController', 'sortByPopularity']); 
+    $router->get('/user/shop/latest', ['User', 'ProductController', 'sortByLatest']); 
+    $router->get('/user/shop/lowtohigh', ['User', 'ProductController', 'sortByPriceLowToHigh']); 
+    $router->get('/user/shop/hightolow', ['User', 'ProductController', 'sortByPriceHighToLow']); 
+    $router->get('/user/shop/product', ['User', 'ProductController', 'show']); 
+    $router->get('/user/shop/search', ['User', 'ProductController', 'search']); 
+    $router->get('/user/profile', ['User', 'UserController', 'index']); 
+    $router->get('/user/profile/edit', ['User', 'UserController', 'edit']); 
+    $router->post('/user/profile/edit', ['User', 'UserController', 'update']); 
+    $router->get('/user/profile/delete', ['User', 'UserController', 'delete']); 
+    $router->get('/user/payment', ['User', 'PaymentController', 'index']); 
+    $router->get('/user/payment/add', ['User', 'PaymentController', 'create']); 
+    $router->post('/user/payment/add', ['User', 'PaymentController', 'store']); 
+    $router->get('/user/order', ['User', 'OrderController', 'index']); 
+    $router->get('/user/order/detail', ['User', 'OrderController', 'detail']); 
+    $router->get('/user/order/download', ['User', 'OrderController', 'download']); 
+
+    $router->get('/user/checkout', ['User', 'CheckoutController', 'index']); 
+    $router->post('/user/checkout', ['User', 'CheckoutController', 'process']);
+    $router->get('/user/cart', ['User', 'CartController', 'index']);
+    $router->post('/user/add', ['User', 'CartController', 'add']);
+    $router->post('/user/delete', ['User', 'CartController', 'delete']);
+    $router->post('/user/update', ['User', 'CartController', 'update']);
+
 
 
     $router->run();

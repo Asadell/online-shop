@@ -6,6 +6,6 @@
   <title><?= $title ?></title>
 </head>
 <body>
-  Home Customer
+  Search
 </body>
 </html>
