@@ -37,7 +37,7 @@ class CategoryController extends BaseController{
     $proc = $this->categoryModel->update($id, $name);
     
     if($proc) {
-      Message::setFlash('success', 'Berhasil !', 'Category berhasil ditambahkan');
+      Message::setFlash('success', 'Berhasil !', 'Category berhasil diubah');
       $this->redirect('admin/categories');
     }
   }
