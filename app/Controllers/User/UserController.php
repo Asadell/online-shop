@@ -12,6 +12,7 @@ class UserController extends BaseController{
   public function index(){
     $data = [
       'title' => 'user',
+      'nav' => 'profile'
     ];
     $this->view('User/user/index', $data);
   }

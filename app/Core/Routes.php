@@ -39,6 +39,7 @@ class Routes{
     $router->get('/user', ['User', 'HomeController', 'index']);
     $router->get('/user/about', ['User', 'HomeController', 'about']); 
     $router->get('/user/shop', ['User', 'ProductController', 'index']); 
+    $router->get('/user/shop/category/{category}', ['User', 'ProductController', 'getbyCategory']); 
     $router->get('/user/shop/popularity', ['User', 'ProductController', 'sortByPopularity']); 
     $router->get('/user/shop/latest', ['User', 'ProductController', 'sortByLatest']); 
     $router->get('/user/shop/lowtohigh', ['User', 'ProductController', 'sortByPriceLowToHigh']); 

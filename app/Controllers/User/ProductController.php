@@ -12,11 +12,38 @@ class ProductController extends BaseController{
   public function index(){
     $data = [
       'title' => 'Shop',
+      'nav' => 'shop',
+      'allCategory' => $this->productModel->getAmountCategory(),
+      'AllProduct' => $this->productModel->getAll()
     ];
+    // echo "<pre>";
+    // print_r($data);
+    // echo "</pre>";
+    // die();
+    $this->view('User/template/header', $data);
     $this->view('User/product/index', $data);
+    $this->view('User/template/footer');
   }
 
-  public function sortByPopularity(){
+  public function getbyCategory($category){
+    $data = [
+      'title' => 'Shop',
+      'nav' => 'shop',
+      'allCategory' => $this->productModel->getAmountCategory(),
+      'category' => $category,
+      'AllProduct' => $this->productModel->getProductbyCategory($category)
+    ];
+    // echo "<pre>";
+    // print_r($data);
+    // echo "</pre>";
+    // die();
+    $this->view('User/template/header', $data);
+    $this->view('User/product/index', $data);
+    $this->view('User/template/footer');
+  }
+
+  public function sortByPopularity($id){
+    die($id);
     $data = [
       'title' => 'Shop',
     ];
