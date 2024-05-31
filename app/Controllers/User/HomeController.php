@@ -1,7 +1,17 @@
 <?php
 
-class HomeController{
+use App\Core\BaseController;
+use App\Core\Message;
+
+class HomeController extends BaseController{
+  private $homeModel;
+  public function __construct() {
+    $this->homeModel = $this->model('User/', 'HomeModel');
+  }
   public function index(){
-    echo 'hello world from home controller user index';
+    $data = [
+      'title' => 'home',
+    ];
+    $this->view('User/home/index', $data);
   }
 }

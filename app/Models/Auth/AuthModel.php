@@ -14,4 +14,35 @@ class AuthModel extends Database {
               order by p.created_at desc";
     return $this->qry($query)->fetchAll();
   }
+
+  public function login($username, $password){
+    $query = "select id_user, username, role from users where username = ? and password = ?";
+    return $this->qry($query, [
+      $username, $password
+    ])->fetch();
+  }
+
+  public function isEmailTaken($email){
+    $query = "select * from users where email = ?";
+    return $this->qry($query, [$email])->fetch();
+  }
+
+  public function isUsernameTaken($username){
+    $query = "select * from users where username = ?";
+    return $this->qry($query, [$username])->fetch();
+  }
+
+  public function insert($data){
+    $query = "INSERT INTO users (full_name, email, role, username, password, address, phone_number)
+              VALUES 
+              (?, ?, 'CUSTOMER', ?, ?, ?, ?)";
+    return $this->qry($query, [
+      $data['fullName'],
+      $data['email'],
+      $data['username'],
+      $data['password'],
+      $data['address'],
+      $data['phoneNumber'],
+    ]);
+  }
 }
