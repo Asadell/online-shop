@@ -83,21 +83,23 @@
       <?php 
       foreach ($AllProduct as $row):
       ?>
-        <a href="<?= BASEURL . '/user/shop/product/'.$row['id_product']?>" class="relative group/cart bg-white rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.02] transition-all">
-          <div
-            class="absolute invisible group-hover/cart:visible group/bag right-4 top-4 bg-white w-8 h-8 flex justify-center items-center rounded-full opacity-85 hover:opacity-100 cursor-pointer">
-            <i
-              class="fa-solid fa-bag-shopping text-coralRed group-hover/bag:scale-110 z-50"></i>
-          </div>
-          <img
-            src="<?=BASEURL.'/img/admin/products/'.$row['file']?>"
-            alt="<?= $row['name'] ?>"
-            class="w-[270px] rounded-sm border-b-[3px] hover:border-softGray border-transparent" />
+        <div class="relative group/cart bg-white rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.02] transition-all">
+          <a
+            href="<?= BASEURL . '/user/cart/add/'.$row['id_product']?>"
+            class="absolute z-50 opacity-0 group-hover/cart:opacity-85 group/bag right-4 top-4 bg-white w-8 h-8 flex justify-center items-center rounded-full hover:opacity-100 cursor-pointer"  id="uyyy">
+            <i class="fa-solid fa-bag-shopping text-coralRed group-hover/bag:scale-110" id="uyy"></i>
+          </a>
+          <a href="<?= BASEURL . '/user/shop/product/'.$row['id_product']?>">
+            <img
+              src="<?=BASEURL.'/img/admin/products/'.$row['file']?>"
+              alt="<?= $row['name'] ?>"
+              class="w-[270px] rounded-sm border-b-[3px] hover:border-softGray border-transparent" />
+          </a>
           <div class="py-3 px-2">
             <h3 class="font-bold text-base mt-2"><?= $row['name'] ?></h3>
             <p class="text-base text-coralRed">Rp. <?= number_format($row['price'], 0, ',', '.') ?></p>
           </div>
-        </a>
+        </div>
       <?php endforeach;?>
       </div>
     </div>

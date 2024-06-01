@@ -27,10 +27,6 @@ class ProductController extends BaseController{
       'AllProduct' => $this->productModel->getAll(),
       'productCount' => $productCount
     ];
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>";
-    die();
     $this->view('User/template/header', $data);
     $this->view('User/product/index', $data);
     $this->view('User/template/footer');
@@ -113,6 +109,9 @@ class ProductController extends BaseController{
   }
 
   public function show($id){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
     $product = $this->productModel->getProductById($id);
     $products = $this->productModel->getProductExceptById($product['id_product'], $product['category_id']);
     $data = [

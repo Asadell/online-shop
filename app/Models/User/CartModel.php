@@ -17,4 +17,22 @@ class CartModel extends Database {
     return $this->qry($query, [$id])->fetchAll();
   }
 
+  public function addProduct($isUser, $idProduct){
+    $query = "INSERT INTO cart_items (user_id, product_id) VALUES (?, ?)";
+    return $this->qry($query, [$isUser, $idProduct]);
+  }
+
+  public function isProductAlreadyExists($isUser, $idProduct){
+    $query = "select * from cart_items where user_id = ? and product_id = ?";
+    return $this->qry($query, [$isUser, $idProduct])->fetch();
+  }
+
+  public function getQuantityById($isUser, $idProduct){
+    $query = "select qty from cart_items where user_id = ? and product_id = ?";
+    return $this->qry($query, [$isUser, $idProduct])->fetch();
+  }
+  public function updateQuantity($qty, $isUser, $idProduct){
+    $query = "update cart_items set qty = ? where user_id = ? and product_id = ?";
+    return $this->qry($query, [$qty, $isUser, $idProduct]);
+  }
 }

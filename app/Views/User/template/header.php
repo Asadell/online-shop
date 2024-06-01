@@ -126,10 +126,11 @@
       <div class="w-full h-[60px] border-b-2">
         <div class="flex justify-between items-center h-full text-coralRed px-5">
           <span class="font-semibold">Shopping Cart</span>
-          <i class="fa-solid fa-xmark fa-lg btnCart"></i>
+          <i class="fa-solid fa-xmark fa-lg btnCart cursor-pointer"></i>
         </div>
       </div>
       <div class="w-full h-[490px] px-5 overflow-auto">
+        <?php  $subtotal = 0; ?>
         <?php if(!$cart){?>
           <div class="h-full flex justify-center items-center">
             <h4 class="font-medium text-darkShade">No products in the cart.</h4>
@@ -141,17 +142,17 @@
           foreach ($cart as $row):
           ?>
             <article class="flex justify-between py-4 flex-nowrap">
-            <div class="flex flex-nowrap= col-11">
+            <div class="flex flex-nowrap col-11">
               <div>
                 <img src="<?=BASEURL.'/img/admin/products/'.$row['file']?>" alt="<?=$row['name']?>" class="h-16 rounded-sm">
               </div>
               <div class="ml-5 bg-white text-wrap w-52 flex justify-evenly flex-col">
                 <p class="text-base text-darkShade font-semibold"><?=$row['name']?></p>
-                <p class="text-sm text-lightShade"><span><?=$row['qty']?> </span>x<span>Rp. <?= number_format($row['price'], 0, ',', '.') ?></span></p>
+                <p class="text-sm text-lightShade"><span><?=$row['qty']?> </span>x<span> Rp. <?= number_format($row['price'], 0, ',', '.') ?></span></p>
               </div>
             </div>
             <div class="col-1 mt-[6px]">
-              <i class="fa-solid fa-xmark fa-sm text-coralRed hover:text-accentColor"></i>
+              <i class="fa-solid fa-xmark fa-sm text-coralRed hover:text-accentColor cursor-pointer"></i>
             </div>
           </article>
           <?php 

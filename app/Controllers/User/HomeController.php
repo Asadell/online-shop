@@ -30,18 +30,35 @@ class HomeController extends BaseController{
     $this->view('User/home/index', $data);
     $this->view('User/template/footer');
   }
-
   public function about(){
     if(!(new ValidationController)->checkLogin('CUSTOMER')){
       $this->redirect('login');
     }
     $data = [
-      'title' => 'About Us',
-      'nav' => 'about',
-      'cart' => $this->cartModel->getCartById(),
+          'title' => 'About Us',
+          'nav' => 'about',
+          'cart' => $this->cartModel->getCartById(),
     ];
+    // echo "<pre>";
+    // print_r($data);
+    // echo "</pre>";
+    // die();
     $this->view('User/template/header', $data);
     $this->view('User/home/about', $data);
     $this->view('User/template/footer');
   }
+
+  // public function about(){
+  //   if(!(new ValidationController)->checkLogin('CUSTOMER')){
+  //     $this->redirect('login');
+  //   }
+  //   $data = [
+  //     'title' => 'About Us',
+  //     'nav' => 'about',
+  //     'cart' => $this->cartModel->getCartById(),
+  //   ];
+  //   $this->view('User/template/header', $data);
+  //   $this->view('User/home/about', $data);
+  //   $this->view('User/template/footer');
+  // }
 }

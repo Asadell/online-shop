@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class CartController extends BaseController{
   private $cartModel;
@@ -16,12 +17,23 @@ class CartController extends BaseController{
   //   $this->view('User/cart/index', $data);
   // }
 
-  // public function add(){ // post
-  //   $data = [
-  //     'title' => 'cart',
-  //   ];
-  //   $this->view('User/cart/index', $data);
-  // }
+  public function add($id){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
+    $idUser = $_SESSION['id_user'];
+    $proc = $this->cartModel->isProductAlreadyExists($idUser, $id);
+    if($proc) {
+      $proc = $this->cartModel->isProductAlreadyExists($idUser, $id);
+      $qty = $proc['qty'];
+      $proc = $this->cartModel->updateQuantity($qty+1, $idUser, $id);
+    }else {
+      $proc = $this->cartModel->addProduct($idUser, $id);
+    }
+    $this->redirect('user/shop');
+  }
+
+  
 
   // public function update(){ // post
   //   $data = [
