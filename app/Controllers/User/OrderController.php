@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class OrderController extends BaseController{
   private $orderModel;
@@ -9,12 +10,15 @@ class OrderController extends BaseController{
     $this->orderModel = $this->model('User/', 'OrderModel');
   }
   
-  // public function index(){
-  //   $data = [
-  //     'title' => 'order',
-  //   ];
-  //   $this->view('User/order/index', $data);
-  // }
+  public function index(){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
+    $data = [
+      'title' => 'order',
+    ];
+    $this->view('User/order/index', $data);
+  }
   
   // public function detail(){ // mana id nya
   //   $data = [

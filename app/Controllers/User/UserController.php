@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class UserController extends BaseController{
   private $userModel;
@@ -12,6 +13,9 @@ class UserController extends BaseController{
   }
   
   public function index(){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
     $data = [
       'title' => 'user',
       'nav' => 'profile',

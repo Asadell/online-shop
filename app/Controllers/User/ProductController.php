@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class ProductController extends BaseController{
   private $productModel;
@@ -12,6 +13,9 @@ class ProductController extends BaseController{
   }
   
   public function index(){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
     unset($_SESSION['category']);
     $products = $this->productModel->getAll();
     $productCount = count($products);

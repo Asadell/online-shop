@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class HomeController extends BaseController{
   private $productModel;
@@ -12,6 +13,9 @@ class HomeController extends BaseController{
   }
   
   public function index(){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
     $data = [
       'title' => 'Shop',
       'nav' => 'home',
@@ -28,6 +32,9 @@ class HomeController extends BaseController{
   }
 
   public function about(){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
     $data = [
       'title' => 'About Us',
       'nav' => 'about',

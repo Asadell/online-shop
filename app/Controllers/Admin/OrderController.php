@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\BaseController;
+use App\Controllers\ValidationController;
 
 class OrderController extends BaseController{
   private $orderModel;
@@ -8,6 +9,9 @@ class OrderController extends BaseController{
     $this->orderModel = $this->model('Admin/', 'OrderModel');
   }
   public function index(){
+    if(!(new ValidationController)->checkLogin('ADMIN')){
+      $this->redirect('login');
+    }
     $data = [
       'title' => 'Order',
       'nav' => 'order',

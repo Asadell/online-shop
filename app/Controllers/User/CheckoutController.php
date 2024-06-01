@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class CheckoutController extends BaseController{
   private $checkoutModel;
@@ -9,12 +10,15 @@ class CheckoutController extends BaseController{
     $this->checkoutModel = $this->model('User/', 'CheckoutModel');
   }
   
-  // public function index(){
-  //   $data = [
-  //     'title' => 'checkout',
-  //   ];
-  //   $this->view('User/checkout/index', $data);
-  // }
+  public function index(){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
+    $data = [
+      'title' => 'checkout',
+    ];
+    $this->view('User/checkout/index', $data);
+  }
 
   // public function process() { // post
   //   $data = [

@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class PaymentController extends BaseController{
   private $paymentModel;
@@ -9,12 +10,15 @@ class PaymentController extends BaseController{
     $this->paymentModel = $this->model('User/', 'PaymentModel');
   }
 
-  // public function index(){
-  //   $data = [
-  //     'title' => 'payment',
-  //   ];
-  //   $this->view('User/payment/index', $data);
-  // }
+  public function index(){
+    if(!(new ValidationController)->checkLogin('CUSTOMER')){
+      $this->redirect('login');
+    }
+    $data = [
+      'title' => 'payment',
+    ];
+    $this->view('User/payment/index', $data);
+  }
 
   // public function create(){
   //   $data = [

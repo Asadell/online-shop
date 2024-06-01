@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\BaseController;
+use App\Controllers\ValidationController;
 
 class DashboardController extends BaseController{
   private $dashboardModel;
@@ -8,6 +9,9 @@ class DashboardController extends BaseController{
     $this->dashboardModel = $this->model('Admin/', 'DashboardModel');
   }
   public function index(){
+    if(!(new ValidationController)->checkLogin('ADMIN')){
+      $this->redirect('login');
+    }
     $salesData = $this->dashboardModel->getSalesByCategory();
     $totalOrderedQty = $this->dashboardModel->totalOrderedQty();
     $totalSalesLaptop = $this->dashboardModel->getTotalSalesLaptop();

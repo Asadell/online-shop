@@ -3,6 +3,7 @@
 use App\Core\BaseController;
 use App\Core\Message;
 use App\Core\PhpXlsxGenerator;
+use App\Controllers\ValidationController;
 
 class ProductController extends BaseController{
   private $productModel;
@@ -10,6 +11,9 @@ class ProductController extends BaseController{
     $this->productModel = $this->model('Admin/', 'ProductModel');
   }
   public function index(){
+    if(!(new ValidationController)->checkLogin('ADMIN')){
+      $this->redirect('login');
+    }
     $data = [
       'title' => 'Product', 
       'nav' => 'products',

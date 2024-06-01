@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class AdminController extends BaseController{
   private $adminModel;
@@ -9,6 +10,9 @@ class AdminController extends BaseController{
     $this->adminModel = $this->model('Admin/', 'AdminModel');
   }
   public function index(){
+    if(!(new ValidationController)->checkLogin('ADMIN')){
+      $this->redirect('login');
+    }
     $data = [
       'title' => 'Admin',
       'nav' => 'admin',

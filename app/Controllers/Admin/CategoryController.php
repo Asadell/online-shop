@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Core\Message;
+use App\Controllers\ValidationController;
 
 class CategoryController extends BaseController{
   private $categoryModel;
@@ -9,6 +10,9 @@ class CategoryController extends BaseController{
     $this->categoryModel = $this->model('Admin/', 'CategoryModel');
   }
   public function index(){
+    if(!(new ValidationController)->checkLogin('ADMIN')){
+      $this->redirect('login');
+    }
     $data = [
       'title' => 'Category',
       'nav' => 'category',
