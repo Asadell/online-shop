@@ -30,14 +30,12 @@ class CategoryModel extends Database {
     return $this->qry($query, [$name, $id]);
   }
 
-
   public function getById($id){
     $query = "select p.id_product, p.name, p.description, p.price, p.stock, p.file, c.name as category 
             from products p JOIN categories c ON c.id_category = p.category_id 
             where p.id_product = ?";
     return $this->qry($query, [$id])->fetch();
   }
-
 
   public function productFileName($id) {
     $query = "select file from products where id_product = ?";
@@ -58,5 +56,8 @@ class CategoryModel extends Database {
     ]);
   }
 
-
+  public function isCanDeleteCategory($id) {
+    $query = "select * from categories c join products p on p.category_id = c.id_category join order_details od on od.product_id = p.id_product where c.id_category =  ?";
+    return $this->qry($query, [$id])->fetchAll();
+  }
 }

@@ -31,9 +31,9 @@
             <img src="<?=BASEURL.'/img/admin/products/'.$row['file'] ?>" alt="<?= $row['name'] ?>" class="rounded" style="width: 40px; height: 40px">
             <span class="mx-1"><?= $row['name'] ?></span>
           </td>
-          <td class="align-middle"><?= number_format($row['price'], 0, ',', '.') ?></td>
-          <td class="align-middle"><?= $row['qty'] ?></td>
           <td class="align-middle"><?= number_format($row['odprice'], 0, ',', '.') ?></td>
+          <td class="align-middle"><?= $row['qty'] ?></td>
+          <td class="align-middle"><?= number_format(($row['odprice']*$row['qty']), 0, ',', '.') ?></td>
         </tr>
         <?php endforeach;?>
       </tbody>

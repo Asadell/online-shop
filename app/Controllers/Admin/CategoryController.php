@@ -43,6 +43,12 @@ class CategoryController extends BaseController{
   }
 
   public function destroy($id){
+    $proc = $this->categoryModel->isCanDeleteCategory($id);
+    if($proc){
+      Message::setFlash('warning', 'Cannot delete category !', 'Category product has been ordered');
+      $this->redirect('admin/categories');
+    }
+
     $proc = $this->categoryModel->delete($id);
     if($proc){
       Message::setFlash('success', 'Berhasil !', 'Category berhasil dihapus');
@@ -52,23 +58,4 @@ class CategoryController extends BaseController{
       $this->redirect('admin/categories');
     }
   }
-
-  // public function edit(){
-  //   $data = [
-  //     'title' => 'Category',
-  //     'nav' => 'category'
-  //   ];
-  //   $this->view('Admin/template/header', $data);
-  //   $this->view('Admin/category/edit', $data);
-  //   $this->view('Admin/template/footer');
-  // }
-  // public function create(){
-  //   $data = [
-  //     'title' => 'Category',
-  //     'nav' => 'category'
-  //   ];
-  //   $this->view('Admin/template/header', $data);
-  //   $this->view('Admin/category/create', $data);
-  //   $this->view('Admin/template/footer');
-  // }
 }

@@ -24,6 +24,7 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Product', 
       'nav' => 'products',
+      'menuCategory' => $this->productModel->getMenuCategory()
     ];
     $this->view('Admin/template/header', $data);
     $this->view('Admin/product/create', $data);
@@ -66,11 +67,17 @@ class ProductController extends BaseController{
       Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
       $this->redirect('admin/products/add');
     }
+    $fileName = $inputs['file']['name'];
+
+    $proc = $this->productModel->isPhotoAlreadyExists($fileName);
+    if($proc){
+      Message::setFlash('warning', 'Cannot add product !', 'Duplicate product photo');
+      $this->redirect('admin/products');
+    } 
     
     $proc = $this->productModel->insert($inputs);
     
     if($proc) {
-      $fileName = $inputs['file']['name'];
       $file_tmp = $inputs['file']['tmp_name'];
       move_uploaded_file($file_tmp, __DIR__.'/../../../public/img/admin/products/'.$fileName);
       Message::setFlash('success', 'Berhasil !', 'Barang berhasil ditambahkan');
@@ -82,6 +89,7 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Product', 
       'nav' => 'products',
+      'menuCategory' => $this->productModel->getMenuCategory(),
       'product' => $this->productModel->getById($id)
     ];
     $this->view('Admin/template/header', $data);
@@ -195,6 +203,12 @@ class ProductController extends BaseController{
         $this->redirect('admin/products/edit/'.$inputs['id_product']);
       }
     } else {
+      $proc = $this->productModel->isCanDeleteProduct($inputs['id_product']);
+      if($proc){
+        Message::setFlash('warning', 'Cannot delete product !', 'Product has been ordered');
+        $this->redirect('admin/products');
+      }
+
       $oldFileData = $this->productModel->productFileName($inputs['id_product']);
       $oldFileName = $oldFileData['file'];
       $proc = $this->productModel->delete($inputs['id_product']);
@@ -210,6 +224,11 @@ class ProductController extends BaseController{
   }
 
   public function destroy($id){
+    $proc = $this->productModel->isCanDeleteProduct($id);
+    if($proc){
+      Message::setFlash('warning', 'Cannot delete product !', 'Product has been ordered');
+      $this->redirect('admin/products');
+    } 
     $oldFileData = $this->productModel->productFileName($id);
     $oldFileName = $oldFileData['file'];
     $proc = $this->productModel->delete($id);

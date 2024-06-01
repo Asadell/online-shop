@@ -16,7 +16,10 @@ if($data) {
 Message::flash();
 ?>
 
-<h1>Edit Products</h1>
+<div class="d-flex justify-content-between">
+  <h1>Edit Products</h1>
+  <a href="<?= BASEURL . '/admin/products'?>" type="button" class="btn btn-secondary">Back</a>
+</div>
 <div class="container">
   <section class="panel panel-default bg-light">
     <div class="panel-body">
@@ -72,9 +75,11 @@ Message::flash();
               <label for="category" class="col-sm-3 control-label w-25 mb-2">Category</label>
               <div class="col-sm-3">
                 <select name="category" id="category" class="form-select">
-                  <option value="1" <?= $product['category'] == 'Laptop' ? 'selected' : '' ?>>Laptop</option>
-                  <option value="2" <?= $product['category'] == 'Handphone' ? 'selected' : '' ?>>Handphone</option>
-                  <option value="3" <?= $product['category'] == 'Accessories' ? 'selected' : '' ?>>Accessories</option>
+                <?php 
+                  foreach ($menuCategory as $row):
+                ?>
+                  <option value="<?=$row['id_category']?>" <?= ($product['category'] == $row['name']) ? 'selected' : '' ?>><?=$row['name']?></option>
+                <?php endforeach;?>
                 </select>
               </div>
             </div>
