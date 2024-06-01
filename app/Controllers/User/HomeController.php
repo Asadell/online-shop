@@ -5,14 +5,17 @@ use App\Core\Message;
 
 class HomeController extends BaseController{
   private $productModel;
+  private $cartModel;
   public function __construct() {
     $this->productModel = $this->model('User/', 'ProductModel');
+    $this->cartModel = $this->model('User/', 'CartModel');
   }
   
   public function index(){
     $data = [
       'title' => 'Shop',
       'nav' => 'home',
+      'cart' => $this->cartModel->getCartById(),
       'AllProduct' => $this->productModel->getTopProduct()
     ];
     // echo "<pre>";
@@ -27,7 +30,8 @@ class HomeController extends BaseController{
   public function about(){
     $data = [
       'title' => 'About Us',
-      'nav' => 'about'
+      'nav' => 'about',
+      'cart' => $this->cartModel->getCartById(),
     ];
     $this->view('User/template/header', $data);
     $this->view('User/home/about', $data);

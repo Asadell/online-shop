@@ -9,17 +9,17 @@ class CheckoutController extends BaseController{
     $this->checkoutModel = $this->model('User/', 'CheckoutModel');
   }
   
-  public function index(){
-    $data = [
-      'title' => 'checkout',
-    ];
-    $this->view('User/checkout/index', $data);
-  }
+  // public function index(){
+  //   $data = [
+  //     'title' => 'checkout',
+  //   ];
+  //   $this->view('User/checkout/index', $data);
+  // }
 
-  public function process() { // post
-    $data = [
-      'title' => 'checkout',
-    ];
-    $this->view('User/checkout/process', $data);
-  }
+  // public function process() { // post
+  //   $data = [
+  //     'title' => 'checkout',
+  //   ];
+  //   $this->view('User/checkout/process', $data);
+  // }
 }

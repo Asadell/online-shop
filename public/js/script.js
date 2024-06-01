@@ -133,3 +133,12 @@ function OpenModalPopUpEditAdminn() {
   $('#phone_Admin').val(phoneAdmin);
   $('#address_Admin').val(addressAdmin);
 }
+
+// const cart = document.getElementById('#btnnCart');
+const cart = document.querySelectorAll('.btnCart');
+const cartMenu = document.getElementById('cart-menu');
+cart.forEach(function (button) {
+  button.addEventListener('click', function () {
+    cartMenu.classList.toggle('hidden');
+  });
+});

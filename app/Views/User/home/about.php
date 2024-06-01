@@ -1,4 +1,4 @@
-  <main class="w-full">
+  <main class="w-full mb-20">
     <article
       class="bg-hero-about h-[300px] bg-no-repeat bg-cover bg-center relative">
       <div class="flex justify-center items-center h-full">

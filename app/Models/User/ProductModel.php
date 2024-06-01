@@ -17,6 +17,16 @@ class ProductModel extends Database {
     $query = "select id_product, name, price, file from products";
     return $this->qry($query)->fetchAll();
   }
+
+  public function getProductById($id){
+    $query = "select p.id_product, p.name as product, p.description, p.price, p.file, p.category_id, c.name as category from products p join categories c on c.id_category = p.category_id where id_product = ?";
+    return $this->qry($query, [$id])->fetch();
+  }
+
+  public function getProductExceptById($id_product, $id_category) {
+    $query = "select id_product, name, description, price, file from products where id_product != ? and category_id = ?";
+    return $this->qry($query, [$id_product, $id_category])->fetchAll();
+  }
   
   public function getAmountCategory(){
     $query = "select c.name, COUNT(p.id_product) from products p JOIN categories c ON c.id_category = p.category_id group by c.id_category order by c.id_category";

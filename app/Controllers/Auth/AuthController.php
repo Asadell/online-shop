@@ -103,9 +103,23 @@ class AuthController extends BaseController{
       $this->redirect('login');
     }
   }
-
+  
+  public function checkLogin($role){
+    return isset($_SESSION['id_user']) && $_SESSION['role']==$role;
+  }
+    
   public function logout(){
+    // echo "<pre>";
+    // echo "</pre>";
+    // print_r($_SESSION);
     session_unset();
     session_destroy();
+    // echo "<pre>";
+    // print_r($_SESSION);
+    // echo "</pre>";
+    // if(isset($_SESSION['id_user'])) echo 'ada';
+    // else echo 'tdk';
+    // die();
+    $this->redirect('login');
   }
 }

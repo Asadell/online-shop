@@ -1,4 +1,4 @@
-<main class="w-full">
+<main class="w-full mb-20">
   <section
     class="bg-hero-home h-[700px] bg-no-repeat bg-cover bg-center relative">
     <div
@@ -83,7 +83,7 @@
       <?php 
       foreach ($AllProduct as $row):
       ?>
-        <a href="<?= BASEURL . '/user/product/'.$row['id_product']?>" class="relative group/cart bg-white rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.02] transition-all">
+        <a href="<?= BASEURL . '/user/shop/product/'.$row['id_product']?>" class="relative group/cart bg-white rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.02] transition-all">
           <div
             class="absolute invisible group-hover/cart:visible group/bag right-4 top-4 bg-white w-8 h-8 flex justify-center items-center rounded-full opacity-85 hover:opacity-100 cursor-pointer">
             <i

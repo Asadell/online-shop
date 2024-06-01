@@ -5,8 +5,10 @@ use App\Core\Message;
 
 class ProductController extends BaseController{
   private $productModel;
+  private $cartModel;
   public function __construct() {
     $this->productModel = $this->model('User/', 'ProductModel');
+    $this->cartModel = $this->model('User/', 'CartModel');
   }
   
   public function index(){
@@ -16,14 +18,15 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Shop',
       'nav' => 'shop',
+      'cart' => $this->cartModel->getCartById(),
       'allCategory' => $this->productModel->getAmountCategory(),
       'AllProduct' => $this->productModel->getAll(),
       'productCount' => $productCount
     ];
-    // echo "<pre>";
-    // print_r($data);
-    // echo "</pre>";
-    // die();
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+    die();
     $this->view('User/template/header', $data);
     $this->view('User/product/index', $data);
     $this->view('User/template/footer');
@@ -36,15 +39,12 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Shop',
       'nav' => 'shop',
+      'cart' => $this->cartModel->getCartById(),
       'allCategory' => $this->productModel->getAmountCategory(),
       'category' => $category,
       'AllProduct' => $products,
       'productCount' => $productCount
     ];
-    // echo "<pre>";
-    // print_r($data);
-    // echo "</pre>";
-    // die();
     $this->view('User/template/header', $data);
     $this->view('User/product/index', $data);
     $this->view('User/template/footer');
@@ -93,6 +93,7 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Shop',
       'nav' => 'shop',
+      'cart' => $this->cartModel->getCartById(),
       'allCategory' => $this->productModel->getAmountCategory(),
       'category' => $category,
       'AllProduct' => $products,
@@ -107,41 +108,26 @@ class ProductController extends BaseController{
     $this->view('User/template/footer');
   }
 
-  // public function sortByPopularity($id){
-  //   die($id);
-  //   $data = [
-  //     'title' => 'Shop',
-  //   ];
-  //   $this->view('User/product/popularity', $data);
-  // }
-
-  // public function sortByLatest(){
-  //   $data = [
-  //     'title' => 'Shop',
-  //   ];
-  //   $this->view('User/product/lastest', $data);
-  // }
-
-  // public function sortByPriceLowToHigh(){
-  //   $data = [
-  //     'title' => 'Shop',
-  //   ];
-  //   $this->view('User/product/lowtohigh', $data);
-  // }
-
-  // public function sortByPriceHighToLow(){
-  //   $data = [
-  //     'title' => 'Shop',
-  //   ];
-  //   $this->view('User/product/hightolow', $data);
-  // }
-
-  // public function show($id = 0){
-  //   $data = [
-  //     'title' => 'Shop',
-  //   ];
-  //   $this->view('User/product/show', $data);
-  // }
+  public function show($id){
+    $product = $this->productModel->getProductById($id);
+    $products = $this->productModel->getProductExceptById($product['id_product'], $product['category_id']);
+    $data = [
+      'title' => 'Shop',
+      'nav' => 'shop',
+      'cart' => $this->cartModel->getCartById(),
+      'product' => $product,
+      'relatedProducts' => $products
+    ];
+    // if($data['cart']) echo 'ada';
+    // else echo 'TDK';
+    // echo "<pre>";
+    // print_r($data);
+    // echo "</pre>";
+    // die();
+    $this->view('User/template/header', $data);
+    $this->view('User/product/show', $data);
+    $this->view('User/template/footer');
+  }
 
   // public function search($keyword = ''){
   //   $data = [

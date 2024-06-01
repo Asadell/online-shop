@@ -9,24 +9,24 @@ class OrderController extends BaseController{
     $this->orderModel = $this->model('User/', 'OrderModel');
   }
   
-  public function index(){
-    $data = [
-      'title' => 'order',
-    ];
-    $this->view('User/order/index', $data);
-  }
+  // public function index(){
+  //   $data = [
+  //     'title' => 'order',
+  //   ];
+  //   $this->view('User/order/index', $data);
+  // }
   
-  public function detail(){ // mana id nya
-    $data = [
-      'title' => 'order',
-    ];
-    $this->view('User/order/orderDetail', $data);
-  }
+  // public function detail(){ // mana id nya
+  //   $data = [
+  //     'title' => 'order',
+  //   ];
+  //   $this->view('User/order/orderDetail', $data);
+  // }
   
-  public function download(){ // download eyy PDF
-    $data = [
-      'title' => 'order',
-    ];
-    $this->view('User/order/index', $data);
-  }
+  // public function download(){ // download eyy PDF
+  //   $data = [
+  //     'title' => 'order',
+  //   ];
+  //   $this->view('User/order/index', $data);
+  // }
 }

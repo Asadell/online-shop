@@ -119,7 +119,58 @@
       </div>
       <div class="flex gap-5 font-medium text-base text-coralRed">
         <i class="fa-solid fa-magnifying-glass hover:cursor-pointer"></i>
-        <i class="fa-solid fa-cart-shopping hover:cursor-pointer"></i>
+        <i class="fa-solid fa-cart-shopping hover:cursor-pointer btnCart" ></i>
       </div>
     </nav>
+    <div id="cart-menu" class="hidden absolute bg-white min-h-screen right-0 top-0 w-96 border border-l-2 z-50">
+      <div class="w-full h-[60px] border-b-2">
+        <div class="flex justify-between items-center h-full text-coralRed px-5">
+          <span class="font-semibold">Shopping Cart</span>
+          <i class="fa-solid fa-xmark fa-lg btnCart"></i>
+        </div>
+      </div>
+      <div class="w-full h-[490px] px-5 overflow-auto">
+        <?php if(!$cart){?>
+          <div class="h-full flex justify-center items-center">
+            <h4 class="font-medium text-darkShade">No products in the cart.</h4>
+          </div>
+        <?php } else {?>
+          <div class="my-2 divide-y flex flex-col">
+          <?php 
+          $subtotal = 0;
+          foreach ($cart as $row):
+          ?>
+            <article class="flex justify-between py-4 flex-nowrap">
+            <div class="flex flex-nowrap= col-11">
+              <div>
+                <img src="<?=BASEURL.'/img/admin/products/'.$row['file']?>" alt="<?=$row['name']?>" class="h-16 rounded-sm">
+              </div>
+              <div class="ml-5 bg-white text-wrap w-52 flex justify-evenly flex-col">
+                <p class="text-base text-darkShade font-semibold"><?=$row['name']?></p>
+                <p class="text-sm text-lightShade"><span><?=$row['qty']?> </span>x<span>Rp. <?= number_format($row['price'], 0, ',', '.') ?></span></p>
+              </div>
+            </div>
+            <div class="col-1 mt-[6px]">
+              <i class="fa-solid fa-xmark fa-sm text-coralRed hover:text-accentColor"></i>
+            </div>
+          </article>
+          <?php 
+            $subtotal += ($row['qty'] * $row['price']);
+            endforeach;
+          ?>
+        </div>
+        <?php } ?>
+      </div>
+      <div class="h-[144px] w-full relative">
+        <div class="border-y-2">
+          <div class="flex justify-between py-4 px-5">
+            <span class="text-coralRed font-medium">Subtotal: </span>
+            <span class="text-lightShade">Rp. <?= number_format($subtotal, 0, ',', '.') ?></span>
+          </div>
+        </div>
+        <div class="flex justify-center items-center py-6 px-5">
+          <a href="#" class="bg-red-400 w-full py-2 text-center font-semibold text-white hover:bg-accentColor rounded-sm">CHECKOUT</a>
+        </div>
+      </div>
+    </div>
   </header>

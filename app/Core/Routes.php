@@ -11,6 +11,7 @@ class Routes{
     $router->post('/login', ['Auth', 'AuthController', 'login']);
     $router->get('/register', ['Auth', 'AuthController', 'register']);
     $router->post('/register', ['Auth', 'AuthController', 'registration']);
+    $router->get('/logout', ['Auth', 'AuthController', 'logout']);
 
     // Admin
     $router->get('/admin', ['Admin', 'DashboardController', 'index']);
@@ -41,11 +42,7 @@ class Routes{
     $router->get('/user/shop', ['User', 'ProductController', 'index']); 
     $router->get('/user/shop/category/{category}', ['User', 'ProductController', 'getbyCategory']); 
     $router->get('/user/shop/sortby/{index}', ['User', 'ProductController', 'sortBy']); 
-    $router->get('/user/shop/popularity', ['User', 'ProductController', 'sortByPopularity']); 
-    $router->get('/user/shop/latest', ['User', 'ProductController', 'sortByLatest']); 
-    $router->get('/user/shop/lowtohigh', ['User', 'ProductController', 'sortByPriceLowToHigh']); 
-    $router->get('/user/shop/hightolow', ['User', 'ProductController', 'sortByPriceHighToLow']); 
-    $router->get('/user/shop/product', ['User', 'ProductController', 'show']); 
+    $router->get('/user/shop/product/{id}', ['User', 'ProductController', 'show']); 
     $router->get('/user/shop/search', ['User', 'ProductController', 'search']); 
     $router->get('/user/profile', ['User', 'UserController', 'index']); 
     $router->get('/user/profile/edit', ['User', 'UserController', 'edit']); 

@@ -1,4 +1,4 @@
-<footer class="w-full bg-black mt-16">
+<footer class="w-full bg-black mt-0">
     <div class="divide-y max-container">
       <div class="grid grid-cols-2 gap-8 py-9">
         <div>
@@ -40,5 +40,7 @@
       </div>
     </div>
   </footer>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="<?=BASEURL . '/js/script.js'?>"></script>
 </body>
 </html>
