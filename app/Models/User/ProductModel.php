@@ -28,73 +28,43 @@ class ProductModel extends Database {
     return $this->qry($query, [$category])->fetchAll();
   }
   
-  public function getProductLaptopbyPopularity(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Laptop' order by p.sales_count desc";
+  public function getProductbyPopularityWithCategory($category){
+    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = ? order by p.sales_count desc";
+    return $this->qry($query,[$category])->fetchAll();
+  }
+  
+  public function getProductbyLastestWithCategory($category){
+    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = ? order by p.created_at desc";
+    return $this->qry($query,[$category])->fetchAll();
+  }
+  
+  public function getProductbyLowtoHighWithCategory($category){
+    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = ? order by p.price asc";
+    return $this->qry($query,[$category])->fetchAll();
+  }
+  
+  public function getProductbyHightoLowWithCategory($category){
+    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = ? order by p.price desc";
+    return $this->qry($query,[$category])->fetchAll();
+  }
+  
+  public function getProductbyPopularity(){
+    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id order by p.sales_count desc";
     return $this->qry($query)->fetchAll();
   }
   
-  public function getProductLaptopbyLastest(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Laptop' order by p.created_at desc";
+  public function getProductbyLastest(){
+    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id order by p.created_at desc";
     return $this->qry($query)->fetchAll();
   }
   
-  public function getProductLaptopbyLowtoHigh(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Laptop' order by p.price asc";
+  public function getProductbyLowtoHigh(){
+    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id order by p.price asc";
     return $this->qry($query)->fetchAll();
   }
   
-  public function getProductLaptopbyHightoLow(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Laptop' order by p.price desc";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductHandphone(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Handphone'";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductHandphonebyPopularity(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Handphone' order by p.sales_count desc";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductHandphonebyLastest(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Handphone' order by p.created_at desc";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductHandphonebyLowtoHigh(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Handphone' order by p.price asc";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductHandphonebyHightoLow(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Handphone' order by p.price desc";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductAccessories(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Accessories'";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductAccessoriesbyPopularity(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Accessories' order by p.sales_count desc";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductAccessoriesbyLastest(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Accessories' order by p.created_at desc";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductAccessoriesbyLowtoHigh(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Accessories' order by p.price asc";
-    return $this->qry($query)->fetchAll();
-  }
-  
-  public function getProductAccessoriesbyHightoLow(){
-    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id where c.name = 'Accessories' order by p.price desc";
+  public function getProductbyHightoLow(){
+    $query = "select p.id_product, p.name, p.price, p.file from products p JOIN categories c ON c.id_category = p.category_id order by p.price desc";
     return $this->qry($query)->fetchAll();
   }
 

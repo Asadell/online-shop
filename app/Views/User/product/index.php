@@ -25,7 +25,7 @@
             foreach ($allCategory as $row):
           ?>
             <div class="flex items-center">
-              <a href="<?= BASEURL . '/user/shop/category/'.$row['name']?>" class="ml-4 text-sm<?= ($category==$row['name']) ? ' font-semibold ' : ' font-medium ' ?>text-lightShade"
+              <a href="<?= BASEURL . '/user/shop/category/'.$row['name']?>" class="ml-4 <?= ($category==$row['name']) ? ' font-bold text-darkShade' : ' font-medium text-lightShade' ?>"
                 ><?= $row['name'] ?><span class="text-coralRed"> (<?= $row['count'] ?>)</span></a
               >
             </div>
@@ -36,21 +36,21 @@
       </div>
       <div>
         <div class="flex justify-between items-center mb-4">
-          <h5>Showing all<span> 00 </span>results</h5>
+          <h5>Showing all<span class="text-coralRed font-semibold"> <?=$productCount?> </span>results</h5>
           <div class="group/dropdown relative">
             <div class="invisible absolute -top-40 right-0 z-10 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow group-hover/dropdown:visible">
               <ul class="py-2 text-sm text-gray-700">
                 <li>
-                  <a href="<?= BASEURL . '/user/shop/...'?>" class="block px-4 py-2 hover:bg-coralRed hover:text-white">Popularity</a>
+                  <a href="<?= BASEURL . '/user/shop/sortby/0'?>" class="block px-4 py-2 hover:bg-coralRed hover:text-white">Popularity</a>
                 </li>
                 <li>
-                  <a href="<?= BASEURL . '/user/shop/...'?>" class="block px-4 py-2 hover:bg-coralRed hover:text-white">Latest</a>
+                  <a href="<?= BASEURL . '/user/shop/sortby/1'?>" class="block px-4 py-2 hover:bg-coralRed hover:text-white">Latest</a>
                 </li>
                 <li>
-                  <a href="<?= BASEURL . '/user/shop/...'?>" class="block px-4 py-2 hover:bg-coralRed hover:text-white">Price: Low to High</a>
+                  <a href="<?= BASEURL . '/user/shop/sortby/2'?>" class="block px-4 py-2 hover:bg-coralRed hover:text-white">Price: Low to High</a>
                 </li>
                 <li>
-                  <a href="<?= BASEURL . '/user/shop/...'?>" class="block px-4 py-2 hover:bg-coralRed hover:text-white">Price: High to Low</a>
+                  <a href="<?= BASEURL . '/user/shop/sortby/3'?>" class="block px-4 py-2 hover:bg-coralRed hover:text-white">Price: High to Low</a>
                 </li>
               </ul>
             </div>
