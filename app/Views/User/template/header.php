@@ -120,6 +120,7 @@
       <div class="flex gap-5 font-medium text-base text-coralRed">
         <i class="fa-solid fa-magnifying-glass hover:cursor-pointer"></i>
         <i class="fa-solid fa-cart-shopping hover:cursor-pointer btnCart" ></i>
+        <div class="absolute top-2 -right-4 bg-coralRed rounded-full">(<span id="countCart" class="text-white font-semibold">0</span>)</div>
       </div>
     </nav>
     <div id="cart-menu" class="hidden absolute bg-white min-h-screen right-0 top-0 w-96 border border-l-2 z-50">
@@ -131,15 +132,15 @@
       </div>
       <div class="w-full h-[490px] px-5 overflow-auto">
         <?php  $subtotal = 0; ?>
-        <?php if(!$cart){?>
+        <?php if(!isset($_SESSION['cart'])){?>
           <div class="h-full flex justify-center items-center">
             <h4 class="font-medium text-darkShade">No products in the cart.</h4>
           </div>
         <?php } else {?>
-          <div class="my-2 divide-y flex flex-col">
+          <div id="cart-content" class="my-2 divide-y flex flex-col">
           <?php 
           $subtotal = 0;
-          foreach ($cart as $row):
+          foreach ($_SESSION['cart'] as $row):
           ?>
             <article class="flex justify-between py-4 flex-nowrap">
             <div class="flex flex-nowrap col-11">

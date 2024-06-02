@@ -57,8 +57,8 @@ class Routes{
 
     $router->get('/user/checkout', ['User', 'CheckoutController', 'index']); 
     $router->post('/user/checkout', ['User', 'CheckoutController', 'process']);
-    // $router->get('/user/cart', ['User', 'CartController', 'index']);
-    $router->get('/user/cart/add/{id}', ['User', 'CartController', 'add']);
+    $router->get('/user/cart/store/{id}', ['User', 'CartController', 'store']);
+    // $router->get('/user/cart/add/{id}', ['User', 'CartController', 'add']);
     $router->post('/user/delete', ['User', 'CartController', 'delete']);
     $router->post('/user/update', ['User', 'CartController', 'update']);
 

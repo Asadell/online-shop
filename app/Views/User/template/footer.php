@@ -42,5 +42,30 @@
   </footer>
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script src="<?=BASEURL . '/js/script.js'?>"></script>
+  <script>
+    $(document).ready(function () {
+      // $(document).on('click', '.addToCart', addCart);
+      addCart(-1);
+    });
+
+    function addCart(idProduct){
+      // const idProduct = $(this).data('id');
+      $.ajax({
+        method: 'GET',
+        url: 'http://online-shop.test/user/cart/store/'+idProduct,
+        // data: {idProduct:idProduct},
+        dataType: 'JSON',
+        success: function(response) {
+          // console.log(response);
+          // $('#cart-content').html(response.cartHtml);
+          // $('#countCart').text('');
+          $('#countCart').text(response ?? 0);
+        },
+        error: function(xhr, status, error) {
+            console.error('Kesalahan AJAX:', status, error);
+        }
+      });
+    }
+  </script>
 </body>
 </html>

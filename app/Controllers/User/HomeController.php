@@ -16,10 +16,11 @@ class HomeController extends BaseController{
     if(!(new ValidationController)->checkLogin('CUSTOMER')){
       $this->redirect('login');
     }
+    $_SESSION['cart'] = $this->cartModel->getCartById();
     $data = [
       'title' => 'Shop',
       'nav' => 'home',
-      'cart' => $this->cartModel->getCartById(),
+      // 'cart' => $_SESSION['cart'],
       'AllProduct' => $this->productModel->getTopProduct()
     ];
     // echo "<pre>";
@@ -37,7 +38,7 @@ class HomeController extends BaseController{
     $data = [
           'title' => 'About Us',
           'nav' => 'about',
-          'cart' => $this->cartModel->getCartById(),
+          // 'cart' => $_SESSION['cart'],
     ];
     // echo "<pre>";
     // print_r($data);

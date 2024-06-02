@@ -85,8 +85,8 @@
       ?>
         <div class="relative group/cart bg-white rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.02] transition-all">
           <a
-            href="<?= BASEURL . '/user/cart/add/'.$row['id_product']?>"
-            class="absolute z-50 opacity-0 group-hover/cart:opacity-85 group/bag right-4 top-4 bg-white w-8 h-8 flex justify-center items-center rounded-full hover:opacity-100 cursor-pointer"  id="uyyy">
+            onclick="addCart(<?=$row['id_product']?>)"
+            class="addToCart absolute z-50 opacity-0 group-hover/cart:opacity-85 group/bag right-4 top-4 bg-white w-8 h-8 flex justify-center items-center rounded-full hover:opacity-100 cursor-pointer"  id="uyyy">
             <i class="fa-solid fa-bag-shopping text-coralRed group-hover/bag:scale-110" id="uyy"></i>
           </a>
           <a href="<?= BASEURL . '/user/shop/product/'.$row['id_product']?>">

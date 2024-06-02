@@ -22,10 +22,10 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Shop',
       'nav' => 'shop',
-      'cart' => $this->cartModel->getCartById(),
       'allCategory' => $this->productModel->getAmountCategory(),
       'AllProduct' => $this->productModel->getAll(),
-      'productCount' => $productCount
+      'productCount' => $productCount,
+      // 'cart' => $_SESSION['cart'],
     ];
     $this->view('User/template/header', $data);
     $this->view('User/product/index', $data);
@@ -39,7 +39,7 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Shop',
       'nav' => 'shop',
-      'cart' => $this->cartModel->getCartById(),
+      // 'cart' => $_SESSION['cart'],
       'allCategory' => $this->productModel->getAmountCategory(),
       'category' => $category,
       'AllProduct' => $products,
@@ -93,7 +93,7 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Shop',
       'nav' => 'shop',
-      'cart' => $this->cartModel->getCartById(),
+      // 'cart' => $_SESSION['cart'],
       'allCategory' => $this->productModel->getAmountCategory(),
       'category' => $category,
       'AllProduct' => $products,
@@ -117,7 +117,7 @@ class ProductController extends BaseController{
     $data = [
       'title' => 'Shop',
       'nav' => 'shop',
-      'cart' => $this->cartModel->getCartById(),
+      // 'cart' => $_SESSION['cart'],
       'product' => $product,
       'relatedProducts' => $products
     ];
