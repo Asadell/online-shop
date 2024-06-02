@@ -7,7 +7,7 @@
             <input
               type="text"
               placeholder="Email Address"
-              class="text-white bg-black placeholder-white py-3 px-4 block w-3/5 border border-r-0 border-gray-200 text-sm focus:z-10 outline-none" />
+              class="text-white bg-black placeholder-white py-3 px-4 block w-3/5 border border-r-0 border-gray-200 text-sm focus:z-10 outline-none focus:border-current focus:ring-0" />
             <button
               type="button"
               class="bg-black w-auto h-[2.875rem] flex-shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-semibold border border-l-0 border-gray-200 text-white disabled:opacity-50 disabled:pointer-events-none px-4">
