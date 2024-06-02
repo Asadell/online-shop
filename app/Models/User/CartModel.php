@@ -45,4 +45,9 @@ class CartModel extends Database {
     $query = "select sum(qty) from cart_items where user_id = ?";
     return $this->qry($query, [$id])->fetch();
   }
+
+  public function emptyCartById($id) {
+    $query = "DELETE FROM cart_items WHERE user_id = ?";
+    return $this->qry($query, [$id]);
+  }
 }

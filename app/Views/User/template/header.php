@@ -171,7 +171,7 @@
           </div>
         </div>
         <div class="flex justify-center items-center py-6 px-5">
-          <a href="#" class="bg-red-400 w-full py-2 text-center font-semibold text-white hover:bg-accentColor rounded-sm">CHECKOUT</a>
+          <a href="<?= BASEURL . '/user/checkout'?>" class="bg-red-400 w-full py-2 text-center font-semibold text-white hover:bg-accentColor rounded-sm">CHECKOUT</a>
         </div>
       </div>
     </div>

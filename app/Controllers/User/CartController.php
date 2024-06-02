@@ -24,11 +24,13 @@ class CartController extends BaseController{
         $proc = $this->cartModel->addProduct($idUser, $id);
       }
     }
+
+    // $cartData = $_SESSION['cart'];
+    $_SESSION['cart'] = $this->cartModel->getCartById();
     
     header('Content-Type: application/json');
     $result = $this->cartModel->getAmountCartById($idUser);
     echo json_encode($result['sum'],JSON_FORCE_OBJECT);
-    $_SESSION['cart'] = $this->cartModel->getCartById();
   }
   
   public function delete($id){

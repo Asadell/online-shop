@@ -53,7 +53,9 @@
         url: 'http://online-shop.test/user/cart/store/'+idProduct,
         dataType: 'JSON',
         success: function(response) {
+          console.log(response);
           $('#countCart').text(response ?? 0);
+          // updateCartView(response.cart);
         },
         error: function(xhr, status, error) {
             console.error('Kesalahan AJAX:', status, error);
@@ -68,6 +70,31 @@
         url: 'http://online-shop.test/user/cart/delete/'+idProduct,
       });
     }
+
+    // function updateCartView(cartData) {
+    //   console.log(cartData);
+    //   let cartContentHTML = '';
+    //   cartData.items.forEach(item => {
+    //     cartContentHTML += `
+    //       <article class="flex justify-between py-4 flex-nowrap">
+    //         <div class="flex flex-nowrap col-11">
+    //           <div>
+    //             <img src="${item.image}" alt="${item.name}" class="h-16 rounded-sm">
+    //           </div>
+    //           <div class="ml-5 bg-white text-wrap w-52 flex justify-evenly flex-col">
+    //             <p class="text-base text-darkShade font-semibold">${item.name}</p>
+    //             <p class="text-sm text-lightShade"><span>${item.quantity} </span>x<span> Rp. ${item.price}</span></p>
+    //           </div>
+    //         </div>
+    //         <div class="col-1 mt-[6px]">
+    //           <a onclick="deleteCart(${item.id_product})"><i class="fa-solid fa-xmark fa-sm text-coralRed hover:text-accentColor cursor-pointer"></i></a>
+    //         </div>
+    //       </article>
+    //     `;
+    //   });
+
+    //   document.getElementById('cart-content').innerHTML = cartContentHTML;
+    // }
   </script>
 </body>
 </html>
