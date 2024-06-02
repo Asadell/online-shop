@@ -9,7 +9,7 @@ class OrderModel extends Database {
   }
 
   public function getAll(){
-    $query = "SELECT id_order, no_resi, status, total_price, order_date, user_id, payment_id FROM orders";
+    $query = "SELECT id_order, no_resi, status, total_price, order_date, user_id, payment_id FROM orders order by order_date desc";
     return $this->qry($query)->fetchAll();
   }
   
