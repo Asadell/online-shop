@@ -120,7 +120,7 @@
       <div class="flex gap-5 font-medium text-base text-coralRed">
         <i class="fa-solid fa-magnifying-glass hover:cursor-pointer"></i>
         <i class="fa-solid fa-cart-shopping hover:cursor-pointer btnCart" ></i>
-        <div class="absolute top-2 -right-4 bg-coralRed rounded-full">(<span id="countCart" class="text-white font-semibold">0</span>)</div>
+        <div class="absolute top-2 -right-4 bg-coralRed rounded-full"><span id="countCart" class="text-white font-semibold px-2">0</span></div>
       </div>
     </nav>
     <div id="cart-menu" class="hidden absolute bg-white min-h-screen right-0 top-0 w-96 border border-l-2 z-50">
@@ -132,7 +132,7 @@
       </div>
       <div class="w-full h-[490px] px-5 overflow-auto">
         <?php  $subtotal = 0; ?>
-        <?php if(!isset($_SESSION['cart'])){?>
+        <?php if(empty($_SESSION['cart'])){?>
           <div class="h-full flex justify-center items-center">
             <h4 class="font-medium text-darkShade">No products in the cart.</h4>
           </div>
@@ -153,7 +153,7 @@
               </div>
             </div>
             <div class="col-1 mt-[6px]">
-              <i class="fa-solid fa-xmark fa-sm text-coralRed hover:text-accentColor cursor-pointer"></i>
+              <a onclick="deleteCart(<?=$row['id_product']?>)"><i class="fa-solid fa-xmark fa-sm text-coralRed hover:text-accentColor cursor-pointer"></i></a>
             </div>
           </article>
           <?php 

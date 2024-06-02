@@ -22,6 +22,11 @@ class CartModel extends Database {
     return $this->qry($query, [$isUser, $idProduct]);
   }
 
+  public function deleteProduct($isUser, $idProduct){
+    $query = "DELETE FROM cart_items WHERE user_id = ? and product_id = ?";
+    return $this->qry($query, [$isUser, $idProduct]);
+  }
+
   public function isProductAlreadyExists($isUser, $idProduct){
     $query = "select * from cart_items where user_id = ? and product_id = ?";
     return $this->qry($query, [$isUser, $idProduct])->fetch();
