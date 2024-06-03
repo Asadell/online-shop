@@ -45,15 +45,19 @@ class Routes{
     $router->get('/user/shop/product/{id}', ['User', 'ProductController', 'show']); 
     $router->get('/user/shop/search', ['User', 'ProductController', 'search']); 
     $router->get('/user/profile', ['User', 'UserController', 'index']); 
-    $router->get('/user/profile/edit', ['User', 'UserController', 'edit']); 
-    $router->post('/user/profile/edit', ['User', 'UserController', 'update']); 
-    $router->get('/user/profile/delete', ['User', 'UserController', 'delete']); 
+    // $router->get('/user/profile/edit', ['User', 'UserController', 'edit']); 
+    $router->post('/user/profile', ['User', 'UserController', 'update']); 
+    $router->get('/user/profile/order', ['User', 'UserController', 'order']); 
+    $router->get('/user/profile/orderDetail/{id}', ['User', 'UserController', 'orderDetail']); 
+    $router->get('/user/profile/payment', ['User', 'UserController', 'payment']); 
+    $router->post('/user/profile/payment', ['User', 'UserController', 'store']); 
+    $router->get('/user/profile/logout', ['Auth', 'AuthController', 'logout']); 
     $router->get('/user/payment', ['User', 'PaymentController', 'index']); 
     $router->get('/user/payment/add', ['User', 'PaymentController', 'create']); 
     $router->post('/user/payment/add', ['User', 'PaymentController', 'store']); 
     $router->get('/user/order', ['User', 'OrderController', 'index']); 
     $router->get('/user/order/detail', ['User', 'OrderController', 'detail']); 
-    $router->get('/user/order/download', ['User', 'OrderController', 'download']); 
+    $router->get('/user/order/download/{id}', ['User', 'OrderController', 'download']); 
 
     $router->get('/user/checkout', ['User', 'CheckoutController', 'index']); 
     $router->post('/user/checkout', ['User', 'CheckoutController', 'process']);

@@ -8,10 +8,12 @@ class CheckoutController extends BaseController{
   private $checkoutModel;
   private $cartModel;
   private $userModel;
+  private $productModel;
   public function __construct() {
     $this->checkoutModel = $this->model('User/', 'CheckoutModel');
     $this->cartModel = $this->model('User/', 'CartModel');
     $this->userModel = $this->model('User/', 'UserModel');
+    $this->productModel = $this->model('User/', 'ProductModel');
   }
   
   public function index(){
@@ -36,11 +38,18 @@ class CheckoutController extends BaseController{
       $this->redirect('login');
     }
     if(empty($_POST['products'])) $this->redirect('user/shop');
+    $total = $_POST['total'];
+    $idpayment = $_POST['provider'];
+    $proc = $this->checkoutModel->getBalanceById($idpayment);
+    if($proc['amount']<$total){
+      $amount = $total-$proc['amount'];
+      Message::setFlash('warning', 'Insufficient Balance!', 'You need '.number_format($amount, 0, ',', '.').' more.');
+      $this->redirect('user/checkout');
+    }
+    $amount = $proc['amount']-$total;
     $iduser = $_SESSION['id_user'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
-    $idpayment = $_POST['provider'];
-    $total = $_POST['total'];
     $resi = $this->generate_serial_number();
     $proc = $this->checkoutModel->storeToOrder($resi, $total, $iduser, $idpayment, $address, $phone);
     $idOrder = $proc['id_order'];
@@ -48,9 +57,25 @@ class CheckoutController extends BaseController{
     $products = $_POST['products'];
     foreach ($products['qty'] as $key => $qty) {
       $idProduct = $products['idproduct'][$key];
+      $proc = $this->productModel->getDetailProductById($idProduct);
+      if($qty > $proc['stock']) {
+        Message::setFlash('warning', 'Stock Insufficient!', 'Not enough stock for '.$proc['name'].'');
+        $this->redirect('user/checkout');
+      }
+    }
+    foreach ($products['qty'] as $key => $qty) {
+      $idProduct = $products['idproduct'][$key];
       $price = $products['price'][$key];
       $proc = $this->checkoutModel->storeToOrderDetail($qty, $idOrder, $idProduct, $price);
+      $proc = $this->productModel->getDetailProductById($idProduct);
+      $qtyNew = $proc['stock'] - $qty;
+      $salesCount = $proc['sales_count'];
+      $cartCount = $proc['cart_count'];
+      $proc = $this->productModel->reduceStock($qtyNew, $idProduct);
+      $proc = $this->productModel->updateSalesCountById($salesCount+1, $idProduct);
+      $proc = $this->productModel->updateCartCountById($cartCount-1, $idProduct);
     }
+    $this->checkoutModel->updateCustomerBalance($amount, $idpayment);
     $this->cartModel->emptyCartById($iduser);
     Message::setFlash('success', 'Order Successful!', 'Order processed. Details emailed.');
     $this->redirect('user/shop');

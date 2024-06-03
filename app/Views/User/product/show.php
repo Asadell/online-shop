@@ -2,8 +2,8 @@
   <div class="max-container">
     <section class="divide-y">
       <article class="w-full flex mb-14">
-        <div class="col-6 w-full">
-          <img src="<?=BASEURL.'/img/admin/products/'.$product['file'] ?>" alt="<?=$product['product'] ?>" class="w-full">
+        <div class="col-6 w-full flex justify-center">
+          <img src="<?=BASEURL.'/img/admin/products/'.$product['file'] ?>" alt="<?=$product['product'] ?>" class="w-96">
         </div>
         <div class="col-6 w-full">
           <div class="mx-12 divide-y">

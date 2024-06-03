@@ -18,6 +18,31 @@ class ProductModel extends Database {
     return $this->qry($query)->fetchAll();
   }
 
+  public function getDetailProductById($id){
+    $query = "select id_product, name, stock, views_count, cart_count, sales_count from products where id_product = ?";
+    return $this->qry($query, [$id])->fetch();
+  }
+
+  public function reduceStock($qty, $id){
+    $query = "UPDATE products SET stock = ? WHERE id_product = ?";
+    return $this->qry($query, [$qty, $id]);
+  }
+  
+  public function updateSalesCountById($count, $id){
+    $query = "UPDATE products SET sales_count = ? WHERE id_product = ?";
+    return $this->qry($query, [$count, $id]);
+  }
+  
+  public function updateCartCountById($count, $id){
+    $query = "UPDATE products SET cart_count = ? WHERE id_product = ?";
+    return $this->qry($query, [$count, $id]);
+  }
+  
+  public function updateViewsCountById($count, $id){
+    $query = "UPDATE products SET views_count = ? WHERE id_product = ?";
+    return $this->qry($query, [$count, $id]);
+  }
+
   public function getProductById($id){
     $query = "select p.id_product, p.name as product, p.description, p.price, p.file, p.category_id, c.name as category from products p join categories c on c.id_category = p.category_id where id_product = ?";
     return $this->qry($query, [$id])->fetch();

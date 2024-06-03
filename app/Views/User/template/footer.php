@@ -19,10 +19,10 @@
           <div class="flex flex-col gap-14">
             <h4 class="font-semibold">Links</h4>
             <div class="flex flex-col gap-11">
-              <a href="#">Home</a>
-              <a href="./about">About</a>
-              <a href="./shop">Shop</a>
-              <a href="./contact">Contact</a>
+              <a href="<?= BASEURL . '/user'?>">Home</a>
+              <a href="<?= BASEURL . '/user/about'?>">About</a>
+              <a href="<?= BASEURL . '/user/shop'?>">Shop</a>
+              <a href="<?= BASEURL . '/user/profile'?>">Profile</a>
             </div>
           </div>
           <div class="flex flex-col gap-14">

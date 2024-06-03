@@ -114,6 +114,9 @@ class ProductController extends BaseController{
     }
     $product = $this->productModel->getProductById($id);
     $products = $this->productModel->getProductExceptById($product['id_product'], $product['category_id']);
+    $proc = $this->productModel->getDetailProductById($id);
+    $viewCount = $proc['views_count'];
+    $this->productModel->updateViewsCountById($viewCount+1, $id);
     $data = [
       'title' => 'Shop',
       'nav' => 'shop',

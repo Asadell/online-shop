@@ -11,5 +11,7 @@
       "name": "Asadell"
     }
   ],
-  "require": {}
+  "require": {
+    "setasign/fpdf": "^1.8"
+  }
 }

@@ -11,7 +11,7 @@
         latest electronic products. We provide a variety of devices from
         leading brands.
       </p>
-      <a href="#" class="text-coralRed bg-white border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed"> Shop Now </a>
+      <a href="<?= BASEURL . '/user/shop'?>" class="text-coralRed bg-white border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed"> Shop Now </a>
     </div>
   </section>
   <article>
@@ -44,7 +44,7 @@
         <span class="text-coralRed"> best electronic product </span
         >categories, designed to meet your digital needs.
       </p>
-      <a href="#" class="text-coralRed bg-white border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed"> Shop All </a>
+      <a href="<?= BASEURL . '/user/shop'?>" class="text-coralRed bg-white border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed"> Shop All </a>
       <div class="flex flex-1 mt-6 justify-between w-full">
         <div class="">
           <img
@@ -78,7 +78,7 @@
         >of quality products from leading brands, with the latest
         innovations for your technology needs.
       </p>
-      <a href="#" class="text-coralRed bg-white border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed"> Shop All </a>
+      <a href="<?= BASEURL . '/user/shop'?>" class="text-coralRed bg-white border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed"> Shop All </a>
       <div class="flex justify-between mt-6 w-full flex-row flex-nowrap">
       <?php 
       foreach ($AllProduct as $row):
@@ -116,7 +116,7 @@
       </p>
       <div class="my-10">
         <a
-          href="#"
+          href="<?= BASEURL . '/user/shop'?>"
           class="text-coralRed bg-transparent border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed">
           Shop Now
         </a>
@@ -131,7 +131,7 @@
         the<span class="text-coralRed"> latest devices </span>to stylish
         accessories.
       </p>
-      <a href="#" class="text-coralRed bg-white border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed"> Shop All </a>
+      <a href="<?= BASEURL . '/user/shop'?>" class="text-coralRed bg-white border border-coralRed px-8 py-4 font-semibold rounded-sm text-center hover:text-white hover:bg-coralRed"> Shop All </a>
     </div>
     <div class="grid grid-cols-2 grid-rows-1 gap-8">
       <div
@@ -145,7 +145,7 @@
             gaming experience.
           </p>
           <a
-            href="#"
+            href="<?= BASEURL . '/user/shop'?>"
             class="text-coralRed border-b-[1px] hover:border-b-2 border-coralRed pb-1"
             >Shop All</a
           >
@@ -161,7 +161,7 @@
               Colorful keyboard for comfort and precision.
             </p>
             <a
-              href="#"
+              href="<?= BASEURL . '/user/shop'?>"
               class="text-coralRed border-b-[1px] hover:border-b-2 border-coralRed pb-1"
               >Shop All</a
             >
@@ -181,7 +181,7 @@
                 Image details are perfect.
               </p>
               <a
-                href="#"
+                href="<?= BASEURL . '/user/shop'?>"
                 class="text-coralRed border-b-[1px] hover:border-b-2 border-coralRed pb-1"
                 >Shop All</a
               >
@@ -198,7 +198,7 @@
               </h3>
               <p class="text-white text-sm my-2">Profound clear sound.</p>
               <a
-                href="#"
+                href="<?= BASEURL . '/user/shop'?>"
                 class="text-coralRed border-b-[1px] hover:border-b-2 border-coralRed pb-1"
                 >Shop All</a
               >

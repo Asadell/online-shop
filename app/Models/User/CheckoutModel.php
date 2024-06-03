@@ -18,5 +18,15 @@ class CheckoutModel extends Database {
     $query = "INSERT INTO order_details (qty, order_id, product_id, price) VALUES (?, ?, ?, ?);";
     return $this->qry($query, [$qty, $idOrder, $idProduct, $price]);
   }
+  
+  public function getBalanceById($id){
+    $query = "select * from payment_details where id_payment = ?";
+    return $this->qry($query, [$id])->fetch();
+  }
+
+  public function updateCustomerBalance($amount, $id){
+    $query = "UPDATE payment_details SET amount = ? WHERE id_payment = ?";
+    return $this->qry($query, [$amount, $id]);
+  }
 
 }

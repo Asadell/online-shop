@@ -99,6 +99,7 @@ class AuthController extends BaseController{
     
     $proc = $this->authModel->insert($inputs);
     if($proc){
+      $this->authModel->providerDefault($proc['id_user']);
       Message::setFlash('success', 'Berhasil !', 'User berhasil ditambahkan');
       $this->redirect('login');
     }

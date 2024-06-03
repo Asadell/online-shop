@@ -35,7 +35,7 @@ class AuthModel extends Database {
   public function insert($data){
     $query = "INSERT INTO users (full_name, email, role, username, password, address, phone_number)
               VALUES 
-              (?, ?, 'CUSTOMER', ?, ?, ?, ?)";
+              (?, ?, 'CUSTOMER', ?, ?, ?, ?) returning id_user";
     return $this->qry($query, [
       $data['fullName'],
       $data['email'],
@@ -43,6 +43,11 @@ class AuthModel extends Database {
       $data['password'],
       $data['address'],
       $data['phoneNumber'],
-    ]);
+    ])->fetch();
+  }
+  
+  public function providerDefault($id){
+    $query = "INSERT INTO payment_details (amount, provider, user_id) VALUES  (100000000, 'BCA', ?)";
+    return $this->qry($query, [$id]);
   }
 }

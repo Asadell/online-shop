@@ -118,7 +118,7 @@
         </ul>
       </div>
       <div class="flex gap-5 font-medium text-base text-coralRed">
-        <i class="fa-solid fa-magnifying-glass hover:cursor-pointer"></i>
+        <!-- <i class="fa-solid fa-magnifying-glass hover:cursor-pointer"></i> -->
         <i class="fa-solid fa-cart-shopping hover:cursor-pointer btnCart" ></i>
         <div class="absolute top-2 -right-4 bg-coralRed rounded-full"><span id="countCart" class="text-white font-semibold px-2">0</span></div>
       </div>

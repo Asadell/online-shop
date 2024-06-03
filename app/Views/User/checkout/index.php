@@ -1,3 +1,9 @@
+<?php
+
+use App\Core\Message;
+
+Message::flash();
+?>
 <main class="w-full mb-20">
     <section class=" max-container my-16">
       <article class="mb-8">

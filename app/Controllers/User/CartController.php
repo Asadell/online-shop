@@ -6,8 +6,10 @@ use App\Controllers\ValidationController;
 
 class CartController extends BaseController{
   private $cartModel;
+  private $productModel;
   public function __construct() {
     $this->cartModel = $this->model('User/', 'CartModel');
+    $this->productModel = $this->model('User/', 'ProductModel');
   }
   
   public function store($id){
@@ -20,7 +22,10 @@ class CartController extends BaseController{
       if($proc) {
         $qty = $proc['qty'];
         $proc = $this->cartModel->updateQuantity($qty+1, $idUser, $id);
-      }else {
+      }else { // belum ada di cart
+        $proc = $this->productModel->getDetailProductById($id);
+        $cartCount = $proc['cart_count'];
+        $proc = $this->productModel->updateCartCountById($cartCount+1, $id);
         $proc = $this->cartModel->addProduct($idUser, $id);
       }
     }
@@ -34,8 +39,14 @@ class CartController extends BaseController{
   }
   
   public function delete($id){
-    header('Content-Type: application/json');
     $idUser = $_SESSION['id_user'];
+    $proc = $this->cartModel->getQuantityById($idUser, $id);
+    if($proc['qty']>0){
+      $proc = $this->productModel->getDetailProductById($id);
+      $cartCount = $proc['cart_count'];
+      if($cartCount>0) $proc = $this->productModel->updateCartCountById($cartCount-1, $id);
+    }
+    header('Content-Type: application/json');
     $proc = $this->cartModel->deleteProduct($idUser, $id);
     $this->store(-1);
   }
