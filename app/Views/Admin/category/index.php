@@ -4,8 +4,7 @@ use App\Core\Message;
 
 Message::flash();
 ?>
-<h2>Category admin</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reprehenderit provident est cumque veniam voluptas?</p>
+<h2>Category Admin</h2>
 <button type="button" class="btn btn-success mb-4" data-bs-toggle="modal" data-bs-target="#addCategory">Add New Category</button>
 <table class="table align-middle mb-0 bg-white table-striped">
   <thead class="bg-light">

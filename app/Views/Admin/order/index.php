@@ -4,8 +4,7 @@ use App\Core\Message;
 
 Message::flash();
 ?>
-<h2>Order admin</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reprehenderit provident est cumque veniam voluptas?</p>
+<h2>Order Admin</h2>
 <!-- <button onclick="location.href='<?= BASEURL . '/admin/products/add' ?>'" type="button" class="btn btn-success">Order</button> -->
 <table class="table align-middle mb-0 bg-white table-striped">
   <thead class="bg-light">

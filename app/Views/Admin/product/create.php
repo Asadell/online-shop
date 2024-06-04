@@ -17,8 +17,8 @@ Message::flash();
 ?>
 
 <div class="d-flex justify-content-between">
-  <h1>Add products</h1>
-  <a href="<?= BASEURL . '/admin/products'?>" type="button" class="btn btn-secondary">Back</a>
+  <h1>Add Products</h1>
+  <a href="<?= BASEURL . '/admin/products'?>" type="button" class="btn btn-secondary h-50">Back</a>
 </div>
 <div class="container">
   <section class="panel panel-default bg-light">

@@ -1,4 +1,4 @@
-<h1>dashboard admin</h1>
+<h1>Dashboard Admin</h1>
 <div>
   <article class="d-flex gap-4 justify-content-between">
     <div class="bg-white flex-grow-1 rounded p-3">
